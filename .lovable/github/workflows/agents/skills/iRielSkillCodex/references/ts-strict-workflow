@@ -1,0 +1,317 @@
+Here is the complete one-line bootstrap script to generate the entire iRielSkillCodex setup—including AGENTS.md, .cursorrules, .github/copilot-instructions.md, .github/workflows/verify.yml, scripts/verify.sh, SKILL.md, and references/engineering-decisions.md—inside your repository in one step.
+
+Bootstrap Script
+
+Run this command from the root directory of your repository:
+bash
+bash -c '
+set -euo pipefail
+
+mkdir -p .agents/skills/iRielSkillCodex/references .github/workflows scripts
+
+cat << '\''EOF'\'' > AGENTS.md
+# Repository Agent Instructions
+
+Follow the engineering workflow defined in `.agents/skills/iRielSkillCodex/SKILL.md` for all code changes, bug fixes, refactors, and reviews.
+
+## Quick Rules
+- Read `SKILL.md` and `references/engineering-decisions.md` before modifying files.
+- Never deploy, push, commit, or alter live environments without explicit permission.
+- Verify every change slice from narrow unit checks to broad integration checks.
+- Report exact verification commands, exit statuses, and unverified areas at handoff.
+EOF
+
+cat << '\''EOF'\'' > .cursorrules
+# iRielSkillCodex Engineering Rules
+
+1. **Preserve the Contract:** Treat explicit user decisions as the controlling specification. Do not modify out-of-scope files or clean up unrelated code.
+2. **Change Contract First:** Before editing, define observable outcomes, files in scope, invariants, failure modes, and required evidence.
+3. **Evidence-Backed Slices:** Reproduce gaps first, make the smallest coherent change, prove behavior with focused tests, and refactor only while green.
+4. **Test Hierarchy:** Test public seams. Prefer real collaborators > fakes > stubs > mocks.
+5. **Narrow-to-Broad Verification:** Run unit tests after each slice; run typechecks, linters, and integration tests before finishing.
+6. **Evidence-Only Handoff:** List changed files, exact verification commands with exit codes, assumptions, and remaining risks.
+EOF
+
+cp .cursorrules .github/copilot-instructions.md
+
+cat << '\''EOF'\'' > .agents/skills/iRielSkillCodex/SKILL.md
+---
+name: iRielSkillCodex
+description: Implement requested software engineering behavior in the smallest reliable increments while preserving user authority, repository conventions, and unrelated work. Treat tests and verification as evidence, not ceremony.
+---
+
+# iRielSkillCodex
+
+Implement the requested behavior in the smallest reliable increments. Preserve the user'\''s authority, the repository'\''s conventions, and all unrelated work. Treat tests and verification as evidence, not ceremony.
+
+## Preserve the Contract
+
+- Treat the user'\''s explicit request and decisions as the controlling specification.
+- Work only inside the approved target and outcome. Report adjacent defects or improvements without acting on them.
+- Read applicable repository instructions before changing files. Inspect the current status and diff so user-owned changes are not overwritten or reformatted accidentally.
+- Do not infer permission to deploy, publish, push, commit, modify live systems, rotate credentials, delete data, or make other external or destructive changes.
+- Ask only when missing information would materially change behavior, public interfaces, data, safety, or scope. Otherwise state a narrow assumption and proceed.
+- Stop before substituting a workaround, partial implementation, or different design for a binding user decision.
+
+## Establish the Change Contract
+
+Before editing, identify:
+1. The observable outcome and acceptance criteria.
+2. The files, modules, interfaces, data, and environments in scope.
+3. Invariants and compatibility requirements that must remain unchanged.
+4. The highest-risk failure modes.
+5. The evidence required to call the task complete.
+
+Inspect the repository'\''s own entry points, manifests, test configuration, CI workflow, and nearby code. Prefer its documented commands and patterns over generic defaults.
+
+For complex work, form a short dependency-ordered plan. Keep only one integration step active at a time, even when independent work runs concurrently.
+
+## Choose the Change Strategy
+
+- **Defect:** Reproduce the failure, reduce it to a specific mechanism, and trace the responsible data or control flow before editing. Add or identify a regression check that fails for the intended reason when practical.
+- **Feature:** Identify the public seam and deliver a thin vertical slice through real behavior before adding breadth.
+- **Refactor:** Characterize current behavior first. Separate behavior preservation from intentional behavior change.
+- **Migration:** Map producers, consumers, compatibility windows, data transitions, and rollback conditions before changing the contract.
+- **Risky boundary:** Identify security, concurrency, persistence, time, network, and failure-recovery behavior explicitly.
+
+Read [engineering-decisions.md](references/engineering-decisions.md) when selecting test levels, diagnosing an uncertain failure, designing a risky change, or splitting work across parallel executors.
+
+## Implement in Evidence-Backed Slices
+
+For each observable behavior:
+1. **Demonstrate the gap.** Prefer a focused failing test or deterministic reproduction. Confirm that it fails because the behavior is absent or wrong, not because the test or environment is broken.
+2. **Make the smallest coherent change.** Modify only what is needed for that slice. Avoid speculative abstractions and adjacent cleanup.
+3. **Prove the behavior.** Run the focused check and inspect its full result and exit status.
+4. **Improve structure only while green.** Refactor only inside scope and rerun the focused check after structural changes.
+5. **Inspect the slice.** Review the diff for accidental API changes, copied secrets, generated noise, weak error handling, and unrelated edits.
+
+Test through public behavior or stable seams where possible. Derive expected values from requirements, invariants, standards, or an independent calculation rather than reproducing the implementation inside the test. Prefer real collaborators over fakes, fakes over stubs, and stubs over mocks when cost and isolation allow.
+
+Do not delete valid pre-existing work merely because it was not developed test-first. If a useful failing test cannot be created safely, use the nearest reliable evidence and disclose the limitation.
+
+## Use Adaptive Parallelism
+
+Treat parallelism as an optimization, never as a requirement or a source of additional authority.
+1. Detect the available agents, processes, test workers, CPU, memory, and isolation mechanisms. Provide a sequential fallback with the same intended result.
+2. Build a dependency graph and parallelize only independent nodes. Start with a bounded budget of two to four workers and reduce it when contention appears.
+3. Parallelize read-only repository exploration, independent components with stable interfaces, and independent verification commands when safe.
+4. Assign one owner to each write surface. Do not let multiple executors edit the same file, schema, lockfile, generated output, or shared interface concurrently.
+5. Isolate concurrent writers with supported worktrees or equivalent environments only when their integration path is clear and creation of that isolation is in scope.
+6. Serialize root-cause discovery when hypotheses depend on one another, contract changes, ordered migrations, and operations sharing a database, port, service, account, device, or live environment.
+7. Use one coordinator to reconcile outputs, resolve overlap, inspect the combined diff, and run fresh post-integration verification.
+
+Never claim combined success by merely collecting worker summaries. Verify the integrated state directly.
+
+## Verify from Narrow to Broad
+
+Select checks from repository documentation and configuration. Run the smallest relevant check after each slice, then the broadest proportionate set before completion:
+- Regression and affected unit tests;
+- Affected integration or contract tests;
+- Type checking, linting, and formatting checks;
+- Build or package validation;
+- End-to-end or runtime behavior at meaningful boundaries;
+- Security, performance, migration, or recovery checks when the change creates those risks.
+
+Record fresh commands, exit statuses, and material results. Investigate failures enough to distinguish a product defect, test defect, environment problem, flaky result, and unrelated pre-existing failure. Do not hide or silently reclassify failures.
+
+Before reporting completion, map each acceptance criterion to a code change and verification result. Classify anything not freshly demonstrated as unverified.
+
+## Hand Off the Result
+
+Lead with the implemented outcome. Then report:
+- Changed files and observable behavior;
+- Verification commands and results;
+- Assumptions and compatibility decisions;
+- Remaining risks or checks that could not run;
+- Related findings that were deliberately not changed.
+
+Do not claim completion from reasoning alone, a previous run, a worker'\''s assertion, or a successful command that did not exercise the changed behavior.
+EOF
+
+cat << '\''EOF'\'' > .agents/skills/iRielSkillCodex/references/engineering-decisions.md
+# Engineering Decisions Reference
+
+Use this guide when selecting test levels, diagnosing uncertain failures, designing risky changes, or splitting work across parallel executors.
+
+## 1. Test Level Selection Matrix
+
+Choose the lowest test level that exercises the actual risk without mocking away the behavior under test.
+
+| Change Type | Primary Test Level | Collaborator Strategy | What to Verify |
+| :--- | :--- | :--- | :--- |
+| **Pure logic / algorithms** | Unit | Real values and data structures | Edge cases, invariants, boundary inputs, and error conditions. |
+| **Component / module wiring** | Integration | Real internal modules; fakes for external I/O | Data serialization, state transitions, and interface contracts. |
+| **Database / persistence** | Integration | Ephemeral real database or transaction rollback | Schema constraints, query accuracy, migrations, and isolation levels. |
+| **External API / network** | Contract / Integration | Recorded fixtures or local stub servers | Request formatting, timeout handling, retries, and error mapping. |
+| **Critical user flows** | End-to-End (E2E) | Full stack in isolated environment | Authentication, routing, side effects, and visible state changes. |
+
+### Test Double Hierarchy
+Use code with caution.
+1. Real Collaborators: Default choice when fast, deterministic, and side-effect free.
+2. Fakes: Working lightweight implementations (e.g., in-memory database) when real collaborators are too slow or stateful.
+3. Stubs: Canned responses for external boundaries where behavior is fixed.
+4. Mocks: Last resort; use only to verify outbound side-effect calls (e.g., sending an email or audit event) where no observable state change exists.
+
+2. Failure Diagnosis Protocol
+
+When a check fails unexpectedly, isolate the failure category before editing production code:
+1. Product Defect: The code violates the specification or an invariant.
+	• Action: Confirm the test expectation matches the contract, then fix the implementation.
+2. Test Defect: The test asserts an outdated contract, relies on implementation details, or leaks state.
+	• Action: Fix the test isolation or update expectations only if the contract intentionally changed.
+3. Environment Problem: Missing dependencies, expired credentials, port collisions, or resource exhaustion.
+	• Action: Restore environment health and rerun without altering code.
+4. Flaky Result: Non-deterministic timing, concurrency race conditions, or unordered collections.
+	• Action: Reproduce with repeated runs or stress flags; fix the underlying race condition rather than adding arbitrary sleeps.
+5. Unrelated Pre-Existing Failure: A failure in an untouched module present before your changes.
+	• Action: Verify against clean baseline (git stash or clean worktree), document it in the handoff, and do not silently ignore or fix out-of-scope code.
+
+3. Risky Boundary Checklist
+
+Before modifying high-risk boundaries, explicitly verify these failure modes:
+• Security: Input validation, authorization checks at every entry point, secret redaction in logs, and least-privilege defaults.
+• Concurrency: Lock ordering, idempotency keys, atomic updates, and behavior under simultaneous duplicate requests.
+• Persistence: Backward-compatible schema migrations (expand-and-contract), nullability defaults, and transaction boundaries.
+• Time & Clocks: Timezone normalization (UTC), daylight saving transitions, monotonic clocks for durations, and clock skew tolerance.
+• Network & External I/O: Explicit connection/read timeouts, bounded retries with jitter, circuit breaking, and partial failure recovery.
+
+4. Parallel Execution Decision Tree
+
+Use this rubric before spawning concurrent workers:
+• Can the tasks share a write surface?
+	• Yes $\rightarrow$ Serialize. Never allow two workers to edit the same file, schema, or lockfile simultaneously.
+	• No $\rightarrow$ Proceed to next check.
+• Do the tasks depend on shared mutable runtime state (ports, DBs, temp files)?
+	• Yes $\rightarrow$ Serialize or assign isolated workspaces/ports per worker.
+	• No $\rightarrow$ Proceed to next check.
+• Is the overhead of isolating and reconciling lower than sequential execution?
+	• Yes $\rightarrow$ Parallelize (cap at 2–4 workers) and run a single coordinator pass afterward to verify the integrated diff.
+	• No $\rightarrow$ Execute sequentially.
+
+5. TypeScript Stack Guidelines
+
+Apply these rules whenever editing TypeScript codebases:
+
+Type Safety Invariants
+
+• No Type Escape Hatches: Never introduce any, @ts-ignore, @ts-expect-error, or unsafe as type assertions to silence compiler errors. Narrow types properly using type guards, discriminated unions, or schema validation (e.g., Zod).
+• Strict Null & Undefined Handling: Respect strictNullChecks and noUncheckedIndexedAccess. Explicitly handle missing array elements or dictionary lookups.
+• Explicit Public Seams: Always annotate return types on exported functions, public class methods, and API boundary handlers to prevent accidental contract drift.
+
+TypeScript Testing Strategy
+
+• Runner Execution: Always run Vitest or Jest in non-interactive single-run mode (vitest run, jest --ci, or CI=true) so verification commands terminate cleanly.
+• Boundary Validation: Test runtime schema parsing (e.g., Zod, Valibot, TypeBox) with invalid payloads, missing fields, and unexpected types—not just valid TypeScript objects.
+• Async & Concurrency: Always await promises inside tests and assert rejections using expect(fn()).rejects.toThrow(...) rather than try/catch blocks that silently pass if no error is thrown.
+• Module Mocking: Avoid vi.mock or jest.mock on internal modules. Inject dependencies via function parameters or factory constructors so real implementations can be tested directly.
+
+6. Continuous Integration (CI) Invariants
+
+Keep local agent verification and remote CI execution aligned:
+• Single Source of Truth: Local agents and .github/workflows/verify.yml must execute the same scripts/verify.sh entrypoint. Never create divergent test commands between local scripts and CI YAML.
+• Deterministic Lockfiles: Always install dependencies using frozen lockfiles (npm ci, pnpm install --frozen-lockfile, yarn install --frozen-lockfile, or bun install --frozen-lockfile). Do not modify lockfiles unless adding or updating an approved dependency is explicitly in scope.
+• Zero-Warning Policy: Treat compiler warnings, linter warnings, and unhandled promise rejections as blocking failures in CI.
+EOF
+cat << '''EOF''' > scripts/verify.sh
+#!/usr/bin/env bash
+set -euo pipefail
+if [ -f "pnpm-lock.yaml" ]; then
+PM="pnpm"
+elif [ -f "yarn.lock" ]; then
+PM="yarn"
+elif [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
+PM="bun"
+else
+PM="npm"
+fi
+echo "Using package manager: $PM"
+echo "=== 1. Formatting & Linting ==="
+if $PM run | grep -qE "^\s*lint"; then
+$PM run lint
+else
+echo "No lint script found in package.json — skipping."
+fi
+echo "=== 2. Type Checking ==="
+if $PM run | grep -qE "^\s*typecheck"; then
+$PM run typecheck
+else
+npx tsc --noEmit
+fi
+echo "=== 3. Unit & Integration Tests ==="
+if $PM run | grep -qE "^\s*test"; then
+CI=true $PM test
+else
+echo "No test script found in package.json — skipping."
+fi
+echo "=== 4. Build Validation ==="
+if $PM run | grep -qE "^\s*build"; then
+$PM run build
+else
+echo "No build script found in package.json — skipping."
+fi
+echo "=== Verification Complete ==="
+EOF
+chmod +x scripts/verify.sh
+cat << '''EOF''' > .github/workflows/verify.yml
+name: Verify Change Contract
+on:
+push:
+branches: [main, master]
+pull_request:
+concurrency:
+group: ${{ github.workflow }}-${{ github.ref }}
+cancel-in-progress: true
+jobs:
+verify:
+name: Narrow-to-Broad Verification
+runs-on: ubuntu-latest
+steps:
+- name: Checkout repository
+uses: actions/checkout@v4
+- name: Detect package manager
+id: pm
+run: |
+if [ -f "pnpm-lock.yaml" ]; then
+echo "manager=pnpm" >> "$GITHUB_OUTPUT"
+elif [ -f "yarn.lock" ]; then
+echo "manager=yarn" >> "$GITHUB_OUTPUT"
+elif [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
+echo "manager=bun" >> "$GITHUB_OUTPUT"
+else
+echo "manager=npm" >> "$GITHUB_OUTPUT"
+fi
+- name: Setup pnpm
+if: steps.pm.outputs.manager == '''pnpm'''
+uses: pnpm/action-setup@v4
+- name: Setup Bun
+if: steps.pm.outputs.manager == '''bun'''
+uses: oven-sh/setup-bun@v2
+- name: Setup Node.js
+if: steps.pm.outputs.manager != '''bun'''
+uses: actions/setup-node@v4
+with:
+node-version: '''22'''
+cache: ${{ steps.pm.outputs.manager }}
+- name: Install dependencies
+run: |
+case "${{ steps.pm.outputs.manager }}" in
+pnpm) pnpm install --frozen-lockfile ;;
+yarn) yarn install --frozen-lockfile ;;
+bun)  bun install --frozen-lockfile ;;
+npm)  npm ci ;;
+esac
+- name: Run verification suite
+run: |
+chmod +x scripts/verify.sh
+./scripts/verify.sh
+EOF
+echo "iRielSkillCodex initialized successfully."
+'
+
+### Verification Step
+
+After running the bootstrap command, confirm everything is wired properly by executing:
+
+```bash
+./scripts/verify.sh
+Once you run the bootstrap command, I can help you test iRielSkillCodex on a real task or feature in your TypeScript repository whenever you're ready.
