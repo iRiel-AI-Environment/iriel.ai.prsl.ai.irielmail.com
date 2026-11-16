@@ -7,10 +7,6 @@
 **Project:** Existing Lovable project  
 **Implementation target:** Production-oriented, fully functional application
 
-Build and evolve the existing iRiel AppWeb into a complete Personal Intelligence Environment. This must be a real working application, not a clickable prototype or a collection of disconnected screens.
-
-Preserve the existing project architecture, working functionality, canonical contracts, and visual identity.
-
 ## 1. ARCHITECTURAL FOUNDATION
 
 Follow PRSL-AI Ecosystem v6.3 as the authoritative architectural baseline.
@@ -25,18 +21,17 @@ Respect these architectural definitions:
 - **iApps:** Native applications and capabilities available within iRiel.
 - **iRiel Devices:** Hardware and platform family integrating with the iRiel environment.
 
-These are not interchangeable concepts. Do not create duplicate architectural layers or independent applications.
+Use the PRSL-AI contracts and capabilities. iRiel Router intelligence, Policy Engine, Runtime, Provider Agnostic,iRiel Resolution and all already-defined architectural responsibilities.
 
-Use existing PRSL-AI contracts and capabilities. Do not reinvent Router, Policy Engine, Runtime, Provider Resolution, or other already-defined architectural responsibilities.
-
-Maintain:
+Requires 
 - Human First.
 - Privacy by Default.
-- Provider Agnosticism.
+- Provider Agnostic.
 - Local-First Processing.
-- User Sovereignty.
+- User id Sovereign.
 - Accessibility and Inclusion.
-- Contextual Continuity.
+- iRiel Contextual Engine
+- iRiel Continuity 
 - Interoperability.
 
 ## 2. VISUAL DESIGN — LOCKED
@@ -63,7 +58,7 @@ Do not introduce a new visual direction.
 
 Reference images define the intended appearance and interaction moments, not the complete application implementation.
 
-## 3. CENTRAL PRESENCE
+## 3. iRiel CENTRAL PRESENCE
 
 Implement the central iRiel Presence as a horizontal iridescent glass capsule with an internal chromatic light beam.
 
@@ -104,14 +99,6 @@ Implement a floating command composer containing:
 - Input: "Ask or search..."
 - Microphone button.
 - Send button.
-
-Quick suggestions:
-
-- Summarize this for me
-- Search the web
-- Work with my files
-- Help me plan
-- Brainstorm ideas
 
 Implement actual actions for every suggestion.
 
@@ -176,15 +163,18 @@ Each section must have a functional interface.
 
 ### Profile
 
-Support:
+Contains: 
 
 - Name.
-- Email.
+- <namespace>@iriel.
 - Timezone.
-- Language.
+- Languages.
 - Personal preferences.
 
-Load authenticated user information when available. Do not invent account information or hardcode example credentials as real user data.
+Load authenticated user: 
+Passkey: FaceID/TouchID+ Auth 2FA + Codes Recovery 
+
+information when available. Do not invent account information or hardcode example credentials as real user data.
 
 ## 7. iVAULT — PERSONAL STORAGE
 
@@ -375,6 +365,7 @@ Requirements:
 - Localized errors.
 - Date and number formatting.
 - RTL support where required.
+- iRiel.llms.intelligence required.
 
 Use a centralized localization architecture instead of scattered hardcoded strings.
 
