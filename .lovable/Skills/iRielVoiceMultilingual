@@ -1,0 +1,27 @@
+---
+name: iriel-voice-multilingual
+description: Design multilingual speech input and output with locale-aware pronunciation, prosody, accessibility, and provider-neutral voice adapters.
+---
+
+# Voice and Multilingual Interaction
+
+## Goal
+Provide natural multilingual interaction while preserving a consistent iRiel voice identity and user control.
+
+## Contracts
+Separate speech recognition, language identification, translation, speech synthesis, and voice rendering. Each adapter declares supported locales, dialects, streaming behavior, latency, privacy mode, and on-device capability.
+
+## Behavior
+- Preserve the user's chosen language unless they request a switch or the conversation clearly changes.
+- Distinguish language from region/dialect; do not assume nationality from accent.
+- Adapt pronunciation, register, and prosody to locale while maintaining a stable voice identity.
+- Allow user control over voice, speed, pitch where supported, and spoken/text output.
+- Provide transcripts and editable text for recognized speech.
+- Handle code-switching and names without silently normalizing away meaning.
+- Ask before sending voice data to a remote service when local processing is unavailable or disallowed.
+
+## Reliability
+Show listening/processing/speaking states; support interruption, cancellation, replay, and graceful fallback to text. Never claim speech was transcribed or spoken without adapter confirmation.
+
+## Tests
+Portuguese BR/PT, English US/UK, Spanish and additional configured locales; mixed-language utterances; noisy input; names; interruption; offline mode; privacy denial; screen-reader coexistence.

@@ -1,0 +1,12 @@
+export type ExecutionMode =
+  | "local"
+  | "ecosystem"
+  | "hybrid";
+
+export interface RuntimeContract {
+  version: string;
+
+  defaultMode: ExecutionMode;
+
+  experiences: ExperienceId[];
+}

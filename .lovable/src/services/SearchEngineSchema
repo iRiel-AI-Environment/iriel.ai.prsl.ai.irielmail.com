@@ -1,0 +1,71 @@
+[
+  {
+    "title": "Can I Use",
+    "mobile": "https://caniuse.com",
+    "shortcuts": [
+      "ciu",
+      "caniuse"
+    ],
+    "favicon": "caniuse.com"
+  },
+  {
+    "title": "MDN Web Docs",
+    "mobile": "https://mozilla.org",
+    "shortcuts": [
+      "mdn"
+    ],
+    "favicon": "developer.mozilla.org"
+  },
+  {
+    "title": "npm",
+    "mobile": "https://npmjs.com",
+    "shortcuts": [
+      "npm"
+    ],
+    "favicon": "://npmjs.com"
+  },
+  {
+    "title": "Perplexity AI",
+    "mobile": "https://perplexity.ai",
+    "shortcuts": [
+      "pplx",
+      "perplexity"
+    ],
+    "favicon": "www.perplexity.ai"
+  },
+  {
+    "title": "Pub.dev (Dart/Flutter)",
+    "mobile": "https://pub.dev",
+    "shortcuts": [
+      "pub"
+    ],
+    "favicon": "pub.dev"
+  },
+  {
+    "title": "Stack Overflow",
+    "mobile": "https://stackoverflow.com",
+    "shortcuts": [
+      "so",
+      "stack"
+    ],
+    "favicon": "stackoverflow.com"
+  },
+  {
+    "title": "Wikipedia",
+    "mobile": "https://wikipedia.org",
+    "shortcuts": [
+      "w",
+      "wiki"
+    ],
+    "favicon": "en.wikipedia.org"
+  },
+  {
+    "title": "YouTube",
+    "mobile": "https://youtube.com",
+    "shortcuts": [
+      "yt",
+      "youtube"
+    ],
+    "favicon": "://youtube.com"
+  }
+]

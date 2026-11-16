@@ -1,0 +1,36 @@
+iRiel Skills Library
+
+Portable Agent Skills for building and operating iRiel as the Personal Intelligence Environment (PIE) created by Robert Software Labs.
+
+Import
+
+In Lovable, open Workspace settings → Skills → Add → Import from GitHub. Import individual Skill directories containing a SKILL.md.
+
+Core runtime
+
+iriel-core-orchestration
+iriel-intent-context-policy
+iriel-memory-continuity
+iriel-tool-governance
+iriel-specialist-agent-design
+iriel-implementation-integrator
+User experience and capabilities
+
+iriel-accessibility-inclusion
+iriel-accessible-reading
+iriel-voice-multilingual
+iriel-document-vision
+iriel-research-web
+iriel-task-planning
+Cross-cutting quality
+
+iriel-security-privacy
+iriel-quality-engineering
+Existing Skills preserved
+
+iriel-identity-governance
+iriel-local-model-orchestration
+iriel-appweb-core-integration
+Format and scope
+
+Each Skill is a standalone directory with portable Agent Skills YAML frontmatter and operational instructions. Skills describe procedures; they are not executable Tools or runtime code. Use the coordinated implementation package in docs/skills/ as the master guide for evolving the existing AppWeb.

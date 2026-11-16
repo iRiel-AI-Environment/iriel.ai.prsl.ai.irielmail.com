@@ -1,0 +1,100 @@
+⸻
+
+title: ‘iRiel — Powerful Intelligence Environment’
+featuredLinks:
+gettingStarted:
+- /introduction/overview
+- /introduction/core-principles
+- /getting-started/quickstart
+- /getting-started/understanding-irieI
+popular:
+- /architecture/personal-intelligence
+- /architecture/irieI-resonance
+- /privacy-and-security/privacy-by-default
+- /devices/overview
+- /apps/overview
+
+versions: ‘*’
+
+children:
+
+* introduction
+* getting-started
+* personal-intelligence
+* architecture
+* resonance
+* memory
+* context
+* identity
+* devices
+* apps
+* capabilities
+* privacy-and-security
+* accessibility-and-inclusion
+* interoperability
+* integrations
+* ai-providers
+* developer-platform
+* apis
+* sdk
+* extensions
+* governance
+* documentation
+* support
+
+childGroups:
+
+* name: Introduction
+    octicon: BookOpenIcon
+    children:
+    * introduction
+    * getting-started
+    * capabilities
+* name: Personal Intelligence
+    octicon: BrainIcon
+    children:
+    * personal-intelligence
+    * architecture
+    * context
+    * identity
+    * memory
+    * resonance
+* name: Devices and Applications
+    octicon: DeviceMobileIcon
+    children:
+    * devices
+    * apps
+* name: Privacy and Human Sovereignty
+    octicon: ShieldLockIcon
+    children:
+    * privacy-and-security
+    * identity
+    * context
+* name: Accessibility and Inclusion
+    octicon: AccessibilityIcon
+    children:
+    * accessibility-and-inclusion
+* name: Interoperability and Integrations
+    octicon: WorkflowIcon
+    children:
+    * interoperability
+    * integrations
+    * ai-providers
+* name: Developer Platform
+    octicon: CodeSquareIcon
+    children:
+    * developer-platform
+    * apis
+    * sdk
+    * extensions
+* name: Governance and Documentation
+    octicon: OrganizationIcon
+    children:
+    * governance
+    * documentation
+* name: Support
+    octicon: LifeBuoyIcon
+    children:
+    * support
+
+⸻

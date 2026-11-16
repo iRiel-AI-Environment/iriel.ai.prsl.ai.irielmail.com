@@ -1,0 +1,42 @@
+---
+name: iriel-tool-governance
+description: Design secure executable Tools, capability contracts, registries, permission checks, confirmations, and auditable execution for iRiel.
+---
+
+# Tool Governance
+
+## Distinction
+A **Skill** describes how to perform a class of work. A **Tool** is a registered executable capability. A **Specialist Agent** coordinates a bounded task using approved Skills and Tools.
+
+## Tool contract
+Each tool declares:
+- stable `id` and semantic version;
+- human-readable purpose and input/output JSON Schemas;
+- required scopes and data classifications;
+- side-effect class (read, write, external, destructive);
+- local/remote execution mode and provider requirements;
+- timeout, cancellation, idempotency, and rate limits;
+- confirmation requirements;
+- audit event schema and error taxonomy.
+
+## Execution sequence
+1. Resolve tool ID from the trusted registry, never from arbitrary model text.
+2. Validate input against schema and size limits.
+3. Evaluate policy and user permissions.
+4. Obtain explicit confirmation for consequential side effects.
+5. Execute through the host runtime.
+6. Validate output and redact sensitive fields.
+7. Record minimal audit metadata.
+8. Return a typed result to the orchestrator.
+
+## Security rules
+- Model output may propose a tool call; it cannot authorize or execute one.
+- Never evaluate generated code or dynamic function names as tools.
+- Reject unknown tools, invalid schemas, excess scopes, and expired approvals.
+- Bind approvals to tool ID, target, parameters, and expiry.
+- Use idempotency keys for retryable writes.
+- Separate read-only tools from write/destructive tools.
+- Do not log secrets, raw credentials, or unnecessary personal content.
+
+## Acceptance tests
+Unknown tool, schema mismatch, permission denial, confirmation expiry, replayed approval, duplicate write, timeout, cancellation, malicious tool output, and audit redaction.
