@@ -60,6 +60,7 @@ function ChatSession({ thread }: { thread: Thread }) {
   const settings = useSettings((state) => state);
   const [draft, setDraft] = useState("");
   const [experience, setExperience] = useState(thread.experience);
+  const [localModelChoice, setLocalModelChoice] = useState<"pending" | "ready" | "basic">("pending");
   const initialResponseStarted = useRef(false);
   const mode = executionMode(experience, settings.federation);
 
@@ -119,6 +120,7 @@ function ChatSession({ thread }: { thread: Thread }) {
   useEffect(() => {
     if (
       status === "ready" &&
+      !(mode === "local" && localModelChoice === "pending") &&
       messages.length === 1 &&
       messages[0]?.role === "user" &&
       !initialResponseStarted.current
@@ -126,7 +128,7 @@ function ChatSession({ thread }: { thread: Thread }) {
       initialResponseStarted.current = true;
       void regenerate();
     }
-  }, [messages, regenerate, status]);
+  }, [localModelChoice, messages, mode, regenerate, status]);
 
   useEffect(() => {
     if (messages.length && (status === "ready" || status === "submitted" || status === "error")) {
@@ -186,7 +188,14 @@ function ChatSession({ thread }: { thread: Thread }) {
         </div>
       )}
 
-      {mode === "local" && <div className="px-4 pt-4"><LocalModelSetup /></div>}
+      {mode === "local" && (
+        <div className="px-4 pt-4">
+          <LocalModelSetup
+            onReady={() => setLocalModelChoice("ready")}
+            onContinueBasic={() => setLocalModelChoice("basic")}
+          />
+        </div>
+      )}
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-5 overflow-y-auto px-4 py-8">
         {messages.length === 0 && (
