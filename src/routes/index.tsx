@@ -15,9 +15,17 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "iRiel — Ask or Search" },
-      { name: "description", content: "iRiel is a Personal Intelligence Environment by Robert Software Labs. Human first. Always." },
+      {
+        name: "description",
+        content:
+          "iRiel is a Personal Intelligence Environment by Robert Software Labs. Human first. Always.",
+      },
       { property: "og:title", content: "iRiel — Ask or Search" },
-      { property: "og:description", content: "A Personal Intelligence Environment with native intelligence from the first second." },
+      {
+        property: "og:description",
+        content:
+          "A Personal Intelligence Environment with native intelligence from the first second.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -25,7 +33,13 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const PILLS = ["suggest.summarize", "suggest.web", "suggest.files", "suggest.plan", "suggest.brainstorm"] as const;
+const PILLS = [
+  "suggest.summarize",
+  "suggest.web",
+  "suggest.files",
+  "suggest.plan",
+  "suggest.brainstorm",
+] as const;
 
 function Home() {
   const t = useT();
@@ -60,11 +74,13 @@ function Home() {
       const settings = getSettings();
       const experience = settings.defaultPrivate ? "private" : settings.experience;
       const thread = await createThread({ experience, title: value.slice(0, 48) });
-      await saveMessages(thread.id, [{
-        id: crypto.randomUUID(),
-        role: "user",
-        parts: [{ type: "text", text: value }],
-      }]);
+      await saveMessages(thread.id, [
+        {
+          id: crypto.randomUUID(),
+          role: "user",
+          parts: [{ type: "text", text: value }],
+        },
+      ]);
       setText("");
       await navigate({ to: "/chat/$threadId", params: { threadId: thread.id } });
     } catch (error) {
@@ -85,16 +101,29 @@ function Home() {
           <span className="text-lg font-medium tracking-tight">iRiel</span>
         </div>
         <div className="flex items-center gap-3">
-          <button type="button" aria-label={t("nav.search")} className="grid size-9 place-items-center rounded-full text-muted-foreground hover:text-foreground">
+          <button
+            type="button"
+            aria-label={t("nav.search")}
+            className="grid size-9 place-items-center rounded-full text-muted-foreground hover:text-foreground"
+          >
             <Search className="size-[18px]" />
           </button>
-          <Link to="/ispace/$section" params={{ section: "profile" }} className="hidden h-9 items-center rounded-full border border-hairline-strong bg-glass px-4 text-sm hover:bg-glass-strong md:inline-flex">iSpace</Link>
+          <Link
+            to="/ispace/$section"
+            params={{ section: "profile" }}
+            className="hidden h-9 items-center rounded-full border border-hairline-strong bg-glass px-4 text-sm hover:bg-glass-strong md:inline-flex"
+          >
+            iSpace
+          </Link>
           <UserAvatar />
         </div>
       </header>
 
       <main className="flex flex-1 flex-col items-center justify-center px-5 pb-10">
-        <PresenceOrb className="h-[64px] w-[122px] md:h-[118px] md:w-[224px]" transitionName="presence" />
+        <PresenceOrb
+          className="h-[64px] w-[122px] md:h-[118px] md:w-[224px]"
+          transitionName="presence"
+        />
         <h1 className="mt-8 max-w-md text-center font-display text-3xl font-light leading-tight tracking-tight text-balance md:text-[44px]">
           {t("hero.title")}
         </h1>
@@ -124,7 +153,11 @@ function Home() {
             </ul>
           )}
           <div className="flex h-14 items-center gap-2 rounded-full glass px-2">
-            <button type="button" aria-label={t("composer.attach")} className="grid size-10 place-items-center rounded-full border border-hairline-strong text-muted-foreground hover:text-foreground">
+            <button
+              type="button"
+              aria-label={t("composer.attach")}
+              className="grid size-10 place-items-center rounded-full border border-hairline-strong text-muted-foreground hover:text-foreground"
+            >
               <Plus className="size-5" />
             </button>
             <input
@@ -133,11 +166,19 @@ function Home() {
               placeholder={t("composer.placeholder")}
               className="min-w-0 flex-1 bg-transparent px-2 text-[15px] outline-none placeholder:text-muted-foreground"
             />
-            <button type="button" aria-label={t("composer.voice")} className="grid size-10 place-items-center rounded-full text-muted-foreground hover:text-foreground">
+            <button
+              type="button"
+              aria-label={t("composer.voice")}
+              className="grid size-10 place-items-center rounded-full text-muted-foreground hover:text-foreground"
+            >
               <Mic className="size-5" />
             </button>
-            <button type="submit" aria-label={t("composer.send")} disabled={!text.trim() || starting}
-              className="grid size-10 place-items-center rounded-full bg-secondary text-foreground hover:bg-accent disabled:opacity-40">
+            <button
+              type="submit"
+              aria-label={t("composer.send")}
+              disabled={!text.trim() || starting}
+              className="grid size-10 place-items-center rounded-full bg-secondary text-foreground hover:bg-accent disabled:opacity-40"
+            >
               <ArrowUp className="size-5" />
             </button>
           </div>
@@ -145,7 +186,12 @@ function Home() {
 
         <div className="mt-6 hidden flex-wrap justify-center gap-3 md:flex">
           {PILLS.map((k) => (
-            <button key={k} type="button" onClick={() => setText(promptFor(k))} className="rounded-full glass px-4 py-2 text-xs text-muted-foreground hover:text-foreground">
+            <button
+              key={k}
+              type="button"
+              onClick={() => setText(promptFor(k))}
+              className="rounded-full glass px-4 py-2 text-xs text-muted-foreground hover:text-foreground"
+            >
               {t(k)}
             </button>
           ))}
