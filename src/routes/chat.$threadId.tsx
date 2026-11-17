@@ -5,6 +5,7 @@ import { useChat } from "@ai-sdk/react";
 import { ArrowLeft, ArrowUp, ShieldCheck, Square } from "lucide-react";
 import { toast } from "sonner";
 import { ExperiencePicker } from "@/components/shell/ExperiencePicker";
+import { LocalModelSetup } from "@/components/chat/LocalModelSetup";
 import { executionMode } from "@/lib/experiences";
 import { LocalRuntimeTransport } from "@/lib/runtime/local";
 import { getData, loadData, saveMessages, updateThread, useData } from "@/lib/store/data";
@@ -184,6 +185,8 @@ function ChatSession({ thread }: { thread: Thread }) {
           Private session · messages stay on this device
         </div>
       )}
+
+      {mode === "local" && <div className="px-4 pt-4"><LocalModelSetup /></div>}
 
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-5 overflow-y-auto px-4 py-8">
         {messages.length === 0 && (
