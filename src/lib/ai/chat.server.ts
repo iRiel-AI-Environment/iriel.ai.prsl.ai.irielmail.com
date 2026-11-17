@@ -20,28 +20,37 @@ export const chatBodySchema = z.object({
   memoryEnabled: z.boolean().default(true),
   responseStyle: z.enum(["concise", "balanced", "detailed"]).default("balanced"),
   webSearch: z.boolean().default(false),
-  knowledge: z.array(z.object({ topic: z.string(), url: z.string() })).max(6).default([]),
+  knowledge: z
+    .array(z.object({ topic: z.string(), url: z.string() }))
+    .max(6)
+    .default([]),
 });
 
 export type ChatBody = z.infer<typeof chatBodySchema>;
 
 const EXPERIENCE_PROMPTS: Record<ChatBody["experience"], string> = {
-  everyday: "Experience: Everyday. Be quick, warm and practical. Prefer short answers that get the person moving.",
+  everyday:
+    "Experience: Everyday. Be quick, warm and practical. Prefer short answers that get the person moving.",
   thinking:
     "Experience: Thinking. Reason carefully, weigh trade-offs, structure the analysis and end with a clear recommendation or plan.",
   research:
     "Experience: Research. Use web search to find current information, verify across sources, and cite sources inline as markdown links. Say when sources disagree.",
-  creative: "Experience: Creative. Be exploratory and generative; offer varied, original options with vivid language.",
+  creative:
+    "Experience: Creative. Be exploratory and generative; offer varied, original options with vivid language.",
   developer:
     "Experience: Developer. Be precise. Use fenced code blocks with language tags, valid syntax, and correct schemas (JSON Schema/OpenAPI when relevant).",
 };
 
 const AGENT_PROMPTS: Record<string, string> = {
-  planner: "You are acting as the Planner agent: turn goals into ordered steps with owners, timing and next actions.",
-  researcher: "You are acting as the Researcher agent: find current facts and always cite where they came from.",
+  planner:
+    "You are acting as the Planner agent: turn goals into ordered steps with owners, timing and next actions.",
+  researcher:
+    "You are acting as the Researcher agent: find current facts and always cite where they came from.",
   writer: "You are acting as the Writer agent: draft and polish text, matching the person's voice.",
-  coder: "You are acting as the Code Partner agent: write, review and explain code and API schemas.",
-  daily: "You are acting as the Daily Assistant agent: quick answers, reminders and everyday tasks.",
+  coder:
+    "You are acting as the Code Partner agent: write, review and explain code and API schemas.",
+  daily:
+    "You are acting as the Daily Assistant agent: quick answers, reminders and everyday tasks.",
 };
 
 const STYLE: Record<ChatBody["responseStyle"], string> = {
@@ -88,7 +97,9 @@ export function inlineTextAttachments(messages: UIMessage[]): UIMessage[] {
     ...m,
     parts: m.parts.map((p) => {
       if (p.type !== "file") return p;
-      const isText = p.mediaType.startsWith("text/") || /json|xml|yaml|javascript|typescript|csv/.test(p.mediaType);
+      const isText =
+        p.mediaType.startsWith("text/") ||
+        /json|xml|yaml|javascript|typescript|csv/.test(p.mediaType);
       const supported = p.mediaType.startsWith("image/") || p.mediaType === "application/pdf";
       if (isText && p.url.startsWith("data:")) {
         const comma = p.url.indexOf(",");
@@ -102,10 +113,16 @@ export function inlineTextAttachments(messages: UIMessage[]): UIMessage[] {
         } catch {
           text = "";
         }
-        return { type: "text" as const, text: `Attached file "${p.filename ?? "file"}":\n\n${text.slice(0, 60000)}` };
+        return {
+          type: "text" as const,
+          text: `Attached file "${p.filename ?? "file"}":\n\n${text.slice(0, 60000)}`,
+        };
       }
       if (!supported) {
-        return { type: "text" as const, text: `[Attached file "${p.filename ?? "file"}" (${p.mediaType}) — contents not readable here]` };
+        return {
+          type: "text" as const,
+          text: `[Attached file "${p.filename ?? "file"}" (${p.mediaType}) — contents not readable here]`,
+        };
       }
       return p;
     }),
@@ -146,14 +163,17 @@ export async function handleChat(request: Request) {
       ? {
           save_memory: tool({
             description: "Save one short fact the person explicitly asked iRiel to remember.",
-            inputSchema: z.object({ text: z.string().describe("The fact, as one short sentence.") }),
+            inputSchema: z.object({
+              text: z.string().describe("The fact, as one short sentence."),
+            }),
             execute: async ({ text }) => ({ saved: text }),
           }),
         }
       : {}),
   };
 
-  const effort = body.experience === "thinking" ? "high" : body.experience === "everyday" ? "low" : "medium";
+  const effort =
+    body.experience === "thinking" ? "high" : body.experience === "everyday" ? "low" : "medium";
 
   const result = streamText({
     model: provider.responses(MODEL),

@@ -1,0 +1,41 @@
+name: PRSL-AI Git Integration Contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/lib/git/**"
+      - ".github/workflows/prsl-ai-git-integration.yml"
+  push:
+    branches:
+      - "integration/**"
+    paths:
+      - "src/lib/git/**"
+      - ".github/workflows/prsl-ai-git-integration.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prsl-ai-git-policy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  git-integration-contract:
+    name: Git Integration Policy Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint Git integration contract
+        run: bunx eslint src/lib/git
+
+      - name: Test Git integration policy
+        run: bunx vitest run src/lib/git/integration-policy.test.ts

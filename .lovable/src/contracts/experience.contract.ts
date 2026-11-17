@@ -1,10 +1,5 @@
 export type ExperienceId =
-  | "everyday"
-  | "thinking"
-  | "research"
-  | "creative"
-  | "developer"
-  | "private";
+  "everyday" | "thinking" | "research" | "creative" | "developer" | "private";
 
 export interface ExperienceContract {
   id: ExperienceId;

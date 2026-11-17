@@ -83,7 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "iRiel" },
-      { name: "description", content: "iRiel — Personal Intelligence Environment by Robert Software Labs." },
+      {
+        name: "description",
+        content: "iRiel — Personal Intelligence Environment by Robert Software Labs.",
+      },
       { name: "author", content: "Robert Software Labs" },
       { property: "og:title", content: "iRiel" },
       { property: "og:description", content: "Human first. Always." },

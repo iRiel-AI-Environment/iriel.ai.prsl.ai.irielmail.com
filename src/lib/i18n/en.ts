@@ -76,7 +76,8 @@ export const en = {
   "exp.private.desc": "Runs only on this device. Nothing leaves it.",
   "exp.switchedNew": "Started a new chat for this experience",
   "private.badge": "Private · On this device",
-  "private.banner": "Private session. Runs entirely on this device — zero telemetry, zero federation calls.",
+  "private.banner":
+    "Private session. Runs entirely on this device — zero telemetry, zero federation calls.",
   "private.zeroTelemetry": "Zero telemetry",
   "private.zeroFederation": "Zero external calls",
   "local.badge": "Local runtime",
@@ -94,7 +95,8 @@ export const en = {
   "chat.error.generic": "iRiel couldn't finish that response. Try again.",
   "chat.error.rate": "iRiel is receiving a lot of requests. Wait a moment and try again.",
   "chat.error.credits": "AI usage for this workspace has run out. Add credits to continue.",
-  "chat.error.network": "You're offline or the connection dropped. Check your network and try again.",
+  "chat.error.network":
+    "You're offline or the connection dropped. Check your network and try again.",
   "chat.stopped": "Stopped",
   "chat.attachment": "Attachment",
 
@@ -117,7 +119,8 @@ export const en = {
   "vault.media": "Media",
   "vault.projects": "Projects",
   "vault.empty": "Your iVault is empty.",
-  "vault.emptyHint": "Upload documents, photos or project files. iRiel indexes them so you can ask about them.",
+  "vault.emptyHint":
+    "Upload documents, photos or project files. iRiel indexes them so you can ask about them.",
   "vault.emptyCategory": "No files in this category yet.",
   "vault.full": "Not enough iVault space for this file.",
   "vault.upgrade": "Change plan",
@@ -228,7 +231,8 @@ export const en = {
   "memory.fromChat": "From a conversation",
   "memory.manual": "Added by you",
   "conn.federation": "PRSL-AI Ecosystem",
-  "conn.federationDesc": "Deep reasoning, knowledge and language services through the Federation Connector.",
+  "conn.federationDesc":
+    "Deep reasoning, knowledge and language services through the Federation Connector.",
   "conn.web": "Web access",
   "conn.webDesc": "Lets Everyday and Research search the web and cite sources.",
   "conn.mode": "Execution mode",
@@ -271,7 +275,8 @@ export const en = {
   "common.today": "Today",
   "common.cancel": "Cancel",
   "voice.unsupported": "Voice input isn't available in this browser. Try Chrome, Edge or Safari.",
-  "voice.denied": "Microphone access was blocked. Allow it in your browser settings to talk to iRiel.",
+  "voice.denied":
+    "Microphone access was blocked. Allow it in your browser settings to talk to iRiel.",
   "voice.noSpeech": "I didn't catch that. Try again.",
   // Search engines (iriel.engines.intelligence)
   "engines.title": "Search engines",
@@ -300,7 +305,8 @@ export const en = {
   "knowledge.sources": "sources",
   "knowledge.enabled": "Use in answers",
   "knowledge.priority": "Knowledge priority",
-  "knowledge.priorityDesc": "Your knowledge first, then iVault, memory, context and general knowledge.",
+  "knowledge.priorityDesc":
+    "Your knowledge first, then iVault, memory, context and general knowledge.",
   "knowledge.add": "Add source",
   "knowledge.addTopic": "Topic",
   "knowledge.addUrl": "Link",

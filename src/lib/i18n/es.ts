@@ -69,7 +69,8 @@ export const es: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "Se ejecuta solo en este dispositivo. Nada sale de él.",
   "exp.switchedNew": "Se ha iniciado un nuevo chat para esta experiencia",
   "private.badge": "Privada · En este dispositivo",
-  "private.banner": "Sesión privada. Se ejecuta íntegramente en este dispositivo, sin telemetría ni llamadas a la federación.",
+  "private.banner":
+    "Sesión privada. Se ejecuta íntegramente en este dispositivo, sin telemetría ni llamadas a la federación.",
   "private.zeroTelemetry": "Sin telemetría",
   "private.zeroFederation": "Sin llamadas externas",
   "local.badge": "Entorno de ejecución local",
@@ -83,9 +84,12 @@ export const es: Partial<Record<MessageKey, string>> = {
   "chat.memorySaved": "Guardado en la memoria",
   "chat.savingMemory": "Guardando en la memoria",
   "chat.error.generic": "iRiel no ha podido completar la respuesta. Inténtalo de nuevo.",
-  "chat.error.rate": "iRiel está recibiendo muchas solicitudes. Espera un momento e inténtalo de nuevo.",
-  "chat.error.credits": "Se ha agotado el uso de IA de este espacio de trabajo. Añade créditos para continuar.",
-  "chat.error.network": "No tienes conexión o se ha interrumpido. Revisa tu red e inténtalo de nuevo.",
+  "chat.error.rate":
+    "iRiel está recibiendo muchas solicitudes. Espera un momento e inténtalo de nuevo.",
+  "chat.error.credits":
+    "Se ha agotado el uso de IA de este espacio de trabajo. Añade créditos para continuar.",
+  "chat.error.network":
+    "No tienes conexión o se ha interrumpido. Revisa tu red e inténtalo de nuevo.",
   "chat.stopped": "Detenido",
   "chat.attachment": "Archivo adjunto",
   "search.placeholder": "Buscar en chats, archivos y memoria...",
@@ -104,7 +108,8 @@ export const es: Partial<Record<MessageKey, string>> = {
   "vault.media": "Multimedia",
   "vault.projects": "Proyectos",
   "vault.empty": "Tu iVault está vacío.",
-  "vault.emptyHint": "Sube documentos, fotos o archivos de proyectos. iRiel los indexa para que puedas preguntar sobre ellos.",
+  "vault.emptyHint":
+    "Sube documentos, fotos o archivos de proyectos. iRiel los indexa para que puedas preguntar sobre ellos.",
   "vault.emptyCategory": "Aún no hay archivos en esta categoría.",
   "vault.full": "No hay suficiente espacio en iVault para este archivo.",
   "vault.upgrade": "Cambiar de plan",
@@ -123,7 +128,8 @@ export const es: Partial<Record<MessageKey, string>> = {
   "vault.status.embedding": "Generando vectores",
   "vault.status.indexed": "Indexado",
   "vault.runtime.title": "Recursos del entorno de ejecución",
-  "vault.runtime.subtitle": "Gestionados por el entorno de ejecución de iRiel. Nunca ocupan espacio en tu iVault.",
+  "vault.runtime.subtitle":
+    "Gestionados por el entorno de ejecución de iRiel. Nunca ocupan espacio en tu iVault.",
   "vault.runtime.zero": "0 B de tu cuota",
   "vault.runtime.weights": "Pesos del modelo",
   "vault.runtime.cache": "Caché de inferencia",
@@ -207,13 +213,15 @@ export const es: Partial<Record<MessageKey, string>> = {
   "memory.fromChat": "De una conversación",
   "memory.manual": "Añadido por ti",
   "conn.federation": "Ecosistema PRSL-AI",
-  "conn.federationDesc": "Servicios de razonamiento profundo, conocimiento y lenguaje a través del conector de federación.",
+  "conn.federationDesc":
+    "Servicios de razonamiento profundo, conocimiento y lenguaje a través del conector de federación.",
   "conn.web": "Acceso a la web",
   "conn.webDesc": "Permite que Día a día e Investigación busquen en la web y citen fuentes.",
   "conn.mode": "Modo de ejecución",
   "conn.hybrid": "Híbrido",
   "conn.local": "Solo local",
-  "conn.hybridDesc": "Privada permanece en el dispositivo; las demás experiencias usan el ecosistema cuando es necesario.",
+  "conn.hybridDesc":
+    "Privada permanece en el dispositivo; las demás experiencias usan el ecosistema cuando es necesario.",
   "conn.localDesc": "Todas las experiencias se ejecutan en el entorno local del dispositivo.",
   "custom.motion": "Movimiento de presencia",
   "custom.motionDesc": "Luz que respira y transiciones fluidas de la esfera.",
@@ -249,8 +257,10 @@ export const es: Partial<Record<MessageKey, string>> = {
   "common.loading": "Cargando...",
   "common.today": "Hoy",
   "common.cancel": "Cancelar",
-  "voice.unsupported": "La entrada de voz no está disponible en este navegador. Prueba con Chrome, Edge o Safari.",
-  "voice.denied": "Se ha bloqueado el acceso al micrófono. Permítelo en los ajustes del navegador para hablar con iRiel.",
+  "voice.unsupported":
+    "La entrada de voz no está disponible en este navegador. Prueba con Chrome, Edge o Safari.",
+  "voice.denied":
+    "Se ha bloqueado el acceso al micrófono. Permítelo en los ajustes del navegador para hablar con iRiel.",
   "voice.noSpeech": "No te he oído bien. Inténtalo de nuevo.",
   "engines.title": "Motores de búsqueda",
   "engines.subtitle": "Escribe ! y un atajo, como !gh o !w, para buscar en cualquier sitio.",
@@ -277,7 +287,8 @@ export const es: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "fuentes",
   "knowledge.enabled": "Usar en las respuestas",
   "knowledge.priority": "Prioridad del conocimiento",
-  "knowledge.priorityDesc": "Primero tu conocimiento; después iVault, la memoria, el contexto y el conocimiento general.",
+  "knowledge.priorityDesc":
+    "Primero tu conocimiento; después iVault, la memoria, el contexto y el conocimiento general.",
   "knowledge.add": "Añadir fuente",
   "knowledge.addTopic": "Tema",
   "knowledge.addUrl": "Enlace",

@@ -6,18 +6,13 @@ export const EXPERIENCES: ExperienceContract[] = [
 
     name: "Everyday",
 
-    description:
-      "Daily conversations and productivity.",
+    description: "Daily conversations and productivity.",
 
-    capabilityIds: [
-      "conversation",
-      "tasks",
-      "search"
-    ],
+    capabilityIds: ["conversation", "tasks", "search"],
 
     preferredExecution: "local",
 
-    allowFederation: true
+    allowFederation: true,
   },
 
   {
@@ -25,18 +20,13 @@ export const EXPERIENCES: ExperienceContract[] = [
 
     name: "Thinking",
 
-    description:
-      "Deep analysis and reasoning.",
+    description: "Deep analysis and reasoning.",
 
-    capabilityIds: [
-      "reasoning",
-      "planning",
-      "analysis"
-    ],
+    capabilityIds: ["reasoning", "planning", "analysis"],
 
     preferredExecution: "hybrid",
 
-    allowFederation: true
+    allowFederation: true,
   },
 
   {
@@ -44,16 +34,12 @@ export const EXPERIENCES: ExperienceContract[] = [
 
     name: "Private",
 
-    description:
-      "Local-only execution.",
+    description: "Local-only execution.",
 
-    capabilityIds: [
-      "private-memory",
-      "private-reasoning"
-    ],
+    capabilityIds: ["private-memory", "private-reasoning"],
 
     preferredExecution: "local",
 
-    allowFederation: false
-  }
+    allowFederation: false,
+  },
 ];

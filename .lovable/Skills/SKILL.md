@@ -19,6 +19,7 @@ Implement the requested behavior in the smallest reliable increments. Preserve t
 ## Establish the Change Contract
 
 Before editing, identify:
+
 1. The observable outcome and acceptance criteria.
 2. The files, modules, interfaces, data, and environments in scope.
 3. Invariants and compatibility requirements that must remain unchanged.
@@ -42,6 +43,7 @@ Read [engineering-decisions.md](references/engineering-decisions.md) when select
 ## Implement in Evidence-Backed Slices
 
 For each observable behavior:
+
 1. **Demonstrate the gap.** Prefer a focused failing test or deterministic reproduction. Confirm that it fails because the behavior is absent or wrong, not because the test or environment is broken.
 2. **Make the smallest coherent change.** Modify only what is needed for that slice. Avoid speculative abstractions and adjacent cleanup.
 3. **Prove the behavior.** Run the focused check and inspect its full result and exit status.
@@ -55,6 +57,7 @@ Do not delete valid pre-existing work merely because it was not developed test-f
 ## Use Adaptive Parallelism
 
 Treat parallelism as an optimization, never as a requirement or a source of additional authority.
+
 1. Detect the available agents, processes, test workers, CPU, memory, and isolation mechanisms. Provide a sequential fallback with the same intended result.
 2. Build a dependency graph and parallelize only independent nodes. Start with a bounded budget of two to four workers and reduce it when contention appears.
 3. Parallelize read-only repository exploration, independent components with stable interfaces, and independent verification commands when safe.
@@ -68,6 +71,7 @@ Never claim combined success by merely collecting worker summaries. Verify the i
 ## Verify from Narrow to Broad
 
 Select checks from repository documentation and configuration. Run the smallest relevant check after each slice, then the broadest proportionate set before completion:
+
 - Regression and affected unit tests;
 - Affected integration or contract tests;
 - Type checking, linting, and formatting checks;
@@ -82,6 +86,7 @@ Before reporting completion, map each acceptance criterion to a code change and 
 ## Hand Off the Result
 
 Lead with the implemented outcome. Then report:
+
 - Changed files and observable behavior;
 - Verification commands and results;
 - Assumptions and compatibility decisions;

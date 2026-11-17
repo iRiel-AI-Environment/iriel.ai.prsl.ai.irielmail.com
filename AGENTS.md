@@ -1,4 +1,5 @@
 <!-- LOVABLE:BEGIN -->
+
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
 > published git history — force pushing, or rebasing/amending/squashing commits
@@ -27,9 +28,11 @@ use the editor.
   `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
+
 <!-- LOVABLE:END -->
 
 ## Project rules
+
 - Local-first data: chats, iVault files (blobs), memories and projects live in browser IndexedDB via `src/lib/store`; small settings in localStorage. Why: IRC-001 is local-first and user-owned; no accounts yet.
 - All chat goes through AI SDK `useChat`; Private (or federation off) threads use the in-browser `LocalRuntimeTransport`, everything else posts to `/api/chat` (Lovable AI Gateway, Responses API). Why: one message pipeline, and Private must never leave the device.
 - UI strings go through `useT()` from `src/lib/i18n`; add a key to every locale dictionary. Why: language switching is a product feature.

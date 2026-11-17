@@ -69,7 +69,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "Funziona solo su questo dispositivo. Nulla lo lascia.",
   "exp.switchedNew": "Nuova chat avviata per questa esperienza",
   "private.badge": "Privata · Su questo dispositivo",
-  "private.banner": "Sessione privata. Si svolge interamente su questo dispositivo — zero telemetria, zero chiamate alla federazione.",
+  "private.banner":
+    "Sessione privata. Si svolge interamente su questo dispositivo — zero telemetria, zero chiamate alla federazione.",
   "private.zeroTelemetry": "Zero telemetria",
   "private.zeroFederation": "Zero chiamate esterne",
   "local.badge": "Runtime locale",
@@ -84,8 +85,10 @@ export const it: Partial<Record<MessageKey, string>> = {
   "chat.savingMemory": "Salvataggio in memoria",
   "chat.error.generic": "iRiel non ha potuto completare la risposta. Riprova.",
   "chat.error.rate": "iRiel sta ricevendo molte richieste. Attendi un momento e riprova.",
-  "chat.error.credits": "La quota di utilizzo dell'IA per questo spazio di lavoro è esaurita. Aggiungi crediti per continuare.",
-  "chat.error.network": "Sei offline o la connessione si è interrotta. Controlla la rete e riprova.",
+  "chat.error.credits":
+    "La quota di utilizzo dell'IA per questo spazio di lavoro è esaurita. Aggiungi crediti per continuare.",
+  "chat.error.network":
+    "Sei offline o la connessione si è interrotta. Controlla la rete e riprova.",
   "chat.stopped": "Interrotto",
   "chat.attachment": "Allegato",
   "search.placeholder": "Cerca in chat, file e memoria...",
@@ -104,7 +107,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "vault.media": "Contenuti multimediali",
   "vault.projects": "Progetti",
   "vault.empty": "Il tuo iVault è vuoto.",
-  "vault.emptyHint": "Carica documenti, foto o file di progetto. iRiel li indicizza, così puoi fare domande sui loro contenuti.",
+  "vault.emptyHint":
+    "Carica documenti, foto o file di progetto. iRiel li indicizza, così puoi fare domande sui loro contenuti.",
   "vault.emptyCategory": "Non ci sono ancora file in questa categoria.",
   "vault.full": "Spazio su iVault insufficiente per questo file.",
   "vault.upgrade": "Cambia piano",
@@ -154,7 +158,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "agents.start": "Avvia",
   "agents.enabled": "Abilitato",
   "agents.planner": "Pianificatore",
-  "agents.planner.desc": "Trasforma gli obiettivi in piani chiari e ordinati, con i prossimi passi da seguire.",
+  "agents.planner.desc":
+    "Trasforma gli obiettivi in piani chiari e ordinati, con i prossimi passi da seguire.",
   "agents.researcher": "Ricercatore",
   "agents.researcher.desc": "Trova informazioni aggiornate e ne cita le fonti.",
   "agents.writer": "Scrittore",
@@ -164,7 +169,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "agents.daily": "Assistente quotidiano",
   "agents.daily.desc": "Risposte rapide, promemoria e attività di ogni giorno.",
   "agents.keeper": "Custode di iVault",
-  "agents.keeper.desc": "Cerca e riassume i contenuti del tuo iVault — interamente sul dispositivo.",
+  "agents.keeper.desc":
+    "Cerca e riassume i contenuti del tuo iVault — interamente sul dispositivo.",
   "devices.title": "Dispositivi",
   "devices.this": "Questo dispositivo",
   "devices.browser": "Browser",
@@ -201,19 +207,22 @@ export const it: Partial<Record<MessageKey, string>> = {
   "memory.useDesc": "iRiel ricorda ciò che scegli e lo usa per personalizzare le risposte.",
   "memory.add": "Aggiungi",
   "memory.addPlaceholder": "Qualcosa che iRiel dovrebbe ricordare...",
-  "memory.empty": "Non ci sono ancora ricordi. Chiedi a iRiel di ricordare qualcosa o aggiungilo qui.",
+  "memory.empty":
+    "Non ci sono ancora ricordi. Chiedi a iRiel di ricordare qualcosa o aggiungilo qui.",
   "memory.delete": "Dimentica",
   "memory.forgotten": "Dimenticato",
   "memory.fromChat": "Da una conversazione",
   "memory.manual": "Aggiunto da te",
   "conn.federation": "Ecosistema PRSL-AI",
-  "conn.federationDesc": "Ragionamento approfondito, conoscenze e servizi linguistici tramite il connettore di federazione.",
+  "conn.federationDesc":
+    "Ragionamento approfondito, conoscenze e servizi linguistici tramite il connettore di federazione.",
   "conn.web": "Accesso al web",
   "conn.webDesc": "Consente a Quotidiana e Ricerca di cercare sul web e citare le fonti.",
   "conn.mode": "Modalità di esecuzione",
   "conn.hybrid": "Ibrida",
   "conn.local": "Solo locale",
-  "conn.hybridDesc": "Privata resta sul dispositivo; le altre esperienze usano l'ecosistema quando serve.",
+  "conn.hybridDesc":
+    "Privata resta sul dispositivo; le altre esperienze usano l'ecosistema quando serve.",
   "conn.localDesc": "Ogni esperienza viene eseguita nel runtime sul dispositivo.",
   "custom.motion": "Animazioni della presenza",
   "custom.motionDesc": "Luce pulsante e transizioni fluide della sfera.",
@@ -226,7 +235,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "custom.balanced": "Equilibrato",
   "custom.detailed": "Dettagliato",
   "privacy.defaultPrivate": "Avvia le nuove chat in Privata",
-  "privacy.defaultPrivateDesc": "Le nuove conversazioni vengono eseguite solo su questo dispositivo.",
+  "privacy.defaultPrivateDesc":
+    "Le nuove conversazioni vengono eseguite solo su questo dispositivo.",
   "privacy.telemetry": "Telemetria",
   "privacy.telemetryDesc": "iRiel non raccoglie mai dati di telemetria sull'utilizzo.",
   "privacy.off": "Disattivata",
@@ -249,8 +259,10 @@ export const it: Partial<Record<MessageKey, string>> = {
   "common.loading": "Caricamento...",
   "common.today": "Oggi",
   "common.cancel": "Annulla",
-  "voice.unsupported": "L'input vocale non è disponibile in questo browser. Prova Chrome, Edge o Safari.",
-  "voice.denied": "L'accesso al microfono è stato bloccato. Consentilo nelle impostazioni del browser per parlare con iRiel.",
+  "voice.unsupported":
+    "L'input vocale non è disponibile in questo browser. Prova Chrome, Edge o Safari.",
+  "voice.denied":
+    "L'accesso al microfono è stato bloccato. Consentilo nelle impostazioni del browser per parlare con iRiel.",
   "voice.noSpeech": "Non ho capito. Riprova.",
   "engines.title": "Motori di ricerca",
   "engines.subtitle": "Digita ! e una scorciatoia, come !gh o !w, per cercare ovunque.",
@@ -277,7 +289,8 @@ export const it: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "fonti",
   "knowledge.enabled": "Usa nelle risposte",
   "knowledge.priority": "Priorità delle conoscenze",
-  "knowledge.priorityDesc": "Prima le tue conoscenze, poi iVault, memoria, contesto e conoscenze generali.",
+  "knowledge.priorityDesc":
+    "Prima le tue conoscenze, poi iVault, memoria, contesto e conoscenze generali.",
   "knowledge.add": "Aggiungi fonte",
   "knowledge.addTopic": "Argomento",
   "knowledge.addUrl": "Link",

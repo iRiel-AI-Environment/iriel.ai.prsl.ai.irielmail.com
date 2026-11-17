@@ -11,14 +11,12 @@ your-project/
 ├── AGENTS.md
 ├── .cursorrules
 ├── .github/
-│   └── copilot-instructions.md
+│ └── copilot-instructions.md
 ├── .agents/
-│   └── skills/
-│       └── iRielSkillCodex/
-│           ├── SKILL.md
-│           └── references/
-│               └── engineering-decisions.md
+│ └── skills/
+│ └── iRielSkillCodex/
+│ ├── SKILL.md
+│ └── references/
+│ └── engineering-decisions.md
 └── scripts/
-    └── verify.sh
-
-    
+└── verify.sh

@@ -4,9 +4,7 @@ export const CAPABILITIES = [
 
     name: "Conversation",
 
-    requiredModelTypes: [
-      "general"
-    ]
+    requiredModelTypes: ["general"],
   },
 
   {
@@ -14,9 +12,7 @@ export const CAPABILITIES = [
 
     name: "Reasoning",
 
-    requiredModelTypes: [
-      "reasoning"
-    ]
+    requiredModelTypes: ["reasoning"],
   },
 
   {
@@ -24,9 +20,7 @@ export const CAPABILITIES = [
 
     name: "Coding",
 
-    requiredModelTypes: [
-      "coding"
-    ]
+    requiredModelTypes: ["coding"],
   },
 
   {
@@ -34,9 +28,7 @@ export const CAPABILITIES = [
 
     name: "Translation",
 
-    requiredModelTypes: [
-      "translation"
-    ]
+    requiredModelTypes: ["translation"],
   },
 
   {
@@ -44,8 +36,6 @@ export const CAPABILITIES = [
 
     name: "Semantic Search",
 
-    requiredModelTypes: [
-      "embedding"
-    ]
-  }
+    requiredModelTypes: ["embedding"],
+  },
 ];

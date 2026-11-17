@@ -1,7 +1,12 @@
-export const TEXT_EXT = /\.(txt|md|markdown|csv|tsv|json|xml|yaml|yml|toml|html?|css|js|jsx|ts|tsx|py|rb|go|rs|java|kt|swift|c|cc|cpp|h|hpp|cs|php|sql|sh|ini|log|env)$/i;
+export const TEXT_EXT =
+  /\.(txt|md|markdown|csv|tsv|json|xml|yaml|yml|toml|html?|css|js|jsx|ts|tsx|py|rb|go|rs|java|kt|swift|c|cc|cpp|h|hpp|cs|php|sql|sh|ini|log|env)$/i;
 
 export function isTextLike(type: string, name: string) {
-  return type.startsWith("text/") || /json|xml|yaml|javascript|typescript/.test(type) || TEXT_EXT.test(name);
+  return (
+    type.startsWith("text/") ||
+    /json|xml|yaml|javascript|typescript/.test(type) ||
+    TEXT_EXT.test(name)
+  );
 }
 
 export async function extractText(blob: Blob, limit = 60_000) {

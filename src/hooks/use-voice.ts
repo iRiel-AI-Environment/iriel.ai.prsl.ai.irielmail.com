@@ -7,7 +7,12 @@ type Recognition = {
   start: () => void;
   stop: () => void;
   abort: () => void;
-  onresult: ((e: { resultIndex: number; results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }> }) => void) | null;
+  onresult:
+    | ((e: {
+        resultIndex: number;
+        results: ArrayLike<{ isFinal: boolean; 0: { transcript: string } }>;
+      }) => void)
+    | null;
   onerror: ((e: { error: string }) => void) | null;
   onend: (() => void) | null;
 };
@@ -55,7 +60,8 @@ export function useVoice(opts: {
   const start = useCallback(async () => {
     const Ctor =
       (window as unknown as { SpeechRecognition?: new () => Recognition }).SpeechRecognition ??
-      (window as unknown as { webkitSpeechRecognition?: new () => Recognition }).webkitSpeechRecognition;
+      (window as unknown as { webkitSpeechRecognition?: new () => Recognition })
+        .webkitSpeechRecognition;
     if (!Ctor) {
       optsRef.current.onError("unsupported");
       return;
@@ -97,14 +103,16 @@ export function useVoice(opts: {
       optsRef.current.onText(text);
     };
     rec.onerror = (e) => {
-      if (e.error === "not-allowed" || e.error === "service-not-allowed") optsRef.current.onError("denied");
+      if (e.error === "not-allowed" || e.error === "service-not-allowed")
+        optsRef.current.onError("denied");
       else if (e.error === "no-speech") optsRef.current.onError("no-speech");
     };
     rec.onend = () => {
       setListening(false);
       cleanupAudio();
       recRef.current = null;
-      if (!manualStop.current && textRef.current.trim()) optsRef.current.onDone(textRef.current.trim());
+      if (!manualStop.current && textRef.current.trim())
+        optsRef.current.onDone(textRef.current.trim());
     };
     recRef.current = rec;
     setListening(true);
@@ -118,10 +126,13 @@ export function useVoice(opts: {
     cleanupAudio();
   }, [cleanupAudio]);
 
-  useEffect(() => () => {
-    recRef.current?.abort();
-    cleanupAudio();
-  }, [cleanupAudio]);
+  useEffect(
+    () => () => {
+      recRef.current?.abort();
+      cleanupAudio();
+    },
+    [cleanupAudio],
+  );
 
   return { listening, level, start, stop };
 }

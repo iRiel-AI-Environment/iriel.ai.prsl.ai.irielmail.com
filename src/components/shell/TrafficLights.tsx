@@ -20,7 +20,10 @@ export function TrafficLights({ onMinimize, muted }: { onMinimize: () => void; m
         aria-label={t("window.close")}
         title={t("window.close")}
         onClick={() => navigate({ to: "/" })}
-        className={cn(base, muted ? "bg-hairline-strong group-hover/lights:bg-traffic-red" : "bg-traffic-red")}
+        className={cn(
+          base,
+          muted ? "bg-hairline-strong group-hover/lights:bg-traffic-red" : "bg-traffic-red",
+        )}
       >
         <X strokeWidth={3} />
       </button>
@@ -29,7 +32,10 @@ export function TrafficLights({ onMinimize, muted }: { onMinimize: () => void; m
         aria-label={t("window.minimize")}
         title={t("window.minimize")}
         onClick={onMinimize}
-        className={cn(base, muted ? "bg-hairline-strong group-hover/lights:bg-traffic-yellow" : "bg-traffic-yellow")}
+        className={cn(
+          base,
+          muted ? "bg-hairline-strong group-hover/lights:bg-traffic-yellow" : "bg-traffic-yellow",
+        )}
       >
         <Minus strokeWidth={3} />
       </button>
@@ -38,7 +44,10 @@ export function TrafficLights({ onMinimize, muted }: { onMinimize: () => void; m
         aria-label={t("window.fullscreen")}
         title={t("window.fullscreen")}
         onClick={toggleFullscreen}
-        className={cn(base, muted ? "bg-hairline-strong group-hover/lights:bg-traffic-green" : "bg-traffic-green")}
+        className={cn(
+          base,
+          muted ? "bg-hairline-strong group-hover/lights:bg-traffic-green" : "bg-traffic-green",
+        )}
       >
         <Plus strokeWidth={3} />
       </button>

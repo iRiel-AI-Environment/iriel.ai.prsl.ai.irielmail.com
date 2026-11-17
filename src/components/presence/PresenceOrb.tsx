@@ -19,7 +19,13 @@ interface Props {
  * (deep blue → violet → peach/white core → magenta → cyan), a cool rim on the
  * upper right and a warm rim on the lower left. SVG so every state animates.
  */
-export function PresenceOrb({ state = "idle", level = 0, className, transitionName, label = "iRiel" }: Props) {
+export function PresenceOrb({
+  state = "idle",
+  level = 0,
+  className,
+  transitionName,
+  label = "iRiel",
+}: Props) {
   const raw = useId().replace(/:/g, "");
   const id = (s: string) => `${raw}-${s}`;
   const u = (s: string) => `url(#${id(s)})`;
@@ -117,42 +123,127 @@ export function PresenceOrb({ state = "idle", level = 0, className, transitionNa
         </defs>
 
         {/* outer halo */}
-        <ellipse cx="200" cy="96" rx="120" ry="26" fill={u("ribbon")} opacity="0.18" filter={u("blur16")} className="orb-halo" />
+        <ellipse
+          cx="200"
+          cy="96"
+          rx="120"
+          ry="26"
+          fill={u("ribbon")}
+          opacity="0.18"
+          filter={u("blur16")}
+          className="orb-halo"
+        />
 
         <rect x="10" y="10" width="340" height="170" rx="85" fill={u("body")} />
         <g clipPath={u("clip")}>
           <ellipse cx="160" cy="196" rx="190" ry="78" fill={u("floor")} />
           <rect x="10" y="10" width="340" height="170" fill={u("leftGlow")} />
           {/* top specular */}
-          <ellipse cx="170" cy="24" rx="120" ry="9" fill="oklch(1 0 0)" opacity="0.06" filter={u("blur6")} />
+          <ellipse
+            cx="170"
+            cy="24"
+            rx="120"
+            ry="9"
+            fill="oklch(1 0 0)"
+            opacity="0.06"
+            filter={u("blur6")}
+          />
 
           <g className="orb-beam">
             {/* soft bloom */}
-            <path d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z" fill={u("ribbon")} opacity="0.55" filter={u("blur16")}>
+            <path
+              d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z"
+              fill={u("ribbon")}
+              opacity="0.55"
+              filter={u("blur16")}
+            >
               <animate attributeName="d" dur={dur} repeatCount="indefinite" values={ribbon} />
             </path>
             {/* ribbon body */}
-            <path d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z" fill={u("ribbon")} opacity="0.85" filter={u("blur2")}>
+            <path
+              d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z"
+              fill={u("ribbon")}
+              opacity="0.85"
+              filter={u("blur2")}
+            >
               <animate attributeName="d" dur={dur} repeatCount="indefinite" values={ribbon} />
             </path>
-            <path d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z" fill={u("ribbonV")} opacity="0.6" style={{ mixBlendMode: "screen" }}>
+            <path
+              d="M30 104 C 80 96, 130 84, 190 88 C 250 92, 290 96, 336 92 L 336 96 C 290 104, 240 112, 180 112 C 120 112, 70 110, 30 106 Z"
+              fill={u("ribbonV")}
+              opacity="0.6"
+              style={{ mixBlendMode: "screen" }}
+            >
               <animate attributeName="d" dur={dur} repeatCount="indefinite" values={ribbon} />
             </path>
             {/* hairline highlight */}
-            <path d="M36 104 C 100 98, 150 86, 200 92 S 300 96, 334 93" stroke="oklch(1 0.02 80)" strokeWidth="1.2" fill="none" opacity="0.9" filter={u("blur2")}>
+            <path
+              d="M36 104 C 100 98, 150 86, 200 92 S 300 96, 334 93"
+              stroke="oklch(1 0.02 80)"
+              strokeWidth="1.2"
+              fill="none"
+              opacity="0.9"
+              filter={u("blur2")}
+            >
               <animate attributeName="d" dur={dur} repeatCount="indefinite" values={thread} />
             </path>
             {/* incandescent core */}
-            <ellipse cx="200" cy="99" rx="46" ry="6" fill="oklch(0.99 0.03 75)" opacity="0.9" filter={u("blur6")} className="orb-core" />
+            <ellipse
+              cx="200"
+              cy="99"
+              rx="46"
+              ry="6"
+              fill="oklch(0.99 0.03 75)"
+              opacity="0.9"
+              filter={u("blur6")}
+              className="orb-core"
+            />
           </g>
           {/* glass shading below the ribbon */}
-          <rect x="10" y="114" width="340" height="30" fill="oklch(0 0 0)" opacity="0.3" filter={u("blur6")} />
+          <rect
+            x="10"
+            y="114"
+            width="340"
+            height="30"
+            fill="oklch(0 0 0)"
+            opacity="0.3"
+            filter={u("blur6")}
+          />
         </g>
 
         {/* rims */}
-        <rect x="10" y="10" width="340" height="170" rx="85" fill="none" stroke={u("rim")} strokeWidth="5" opacity="0.45" filter={u("blur6")} />
-        <rect x="10.75" y="10.75" width="338.5" height="168.5" rx="84.25" fill="none" stroke={u("rim")} strokeWidth="1.5" />
-        <rect x="10.75" y="10.75" width="338.5" height="168.5" rx="84.25" fill="none" stroke={u("rimBottom")} strokeWidth="1.5" />
+        <rect
+          x="10"
+          y="10"
+          width="340"
+          height="170"
+          rx="85"
+          fill="none"
+          stroke={u("rim")}
+          strokeWidth="5"
+          opacity="0.45"
+          filter={u("blur6")}
+        />
+        <rect
+          x="10.75"
+          y="10.75"
+          width="338.5"
+          height="168.5"
+          rx="84.25"
+          fill="none"
+          stroke={u("rim")}
+          strokeWidth="1.5"
+        />
+        <rect
+          x="10.75"
+          y="10.75"
+          width="338.5"
+          height="168.5"
+          rx="84.25"
+          fill="none"
+          stroke={u("rimBottom")}
+          strokeWidth="1.5"
+        />
       </svg>
     </div>
   );

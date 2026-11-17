@@ -1,7 +1,15 @@
 import { useSyncExternalStore } from "react";
 import type { UIMessage } from "ai";
 import * as idb from "./db";
-import type { ExperienceId, AgentId, Memory, Project, Thread, VaultFile, VaultCategory } from "./types";
+import type {
+  ExperienceId,
+  AgentId,
+  Memory,
+  Project,
+  Thread,
+  VaultFile,
+  VaultCategory,
+} from "./types";
 import { getSettings } from "./settings";
 import { PLANS } from "@/lib/vault";
 import { extractText, isTextLike } from "@/lib/files";
@@ -106,7 +114,9 @@ export async function updateThread(id: string, patch: Partial<Thread>) {
   if (!existing) return;
   const next = { ...existing, ...patch };
   set({
-    threads: [next, ...state.threads.filter((t) => t.id !== id)].sort((a, b) => b.updatedAt - a.updatedAt),
+    threads: [next, ...state.threads.filter((t) => t.id !== id)].sort(
+      (a, b) => b.updatedAt - a.updatedAt,
+    ),
   });
   await idb.put("threads", next);
 }
@@ -119,9 +129,12 @@ export async function saveMessages(id: string, messages: UIMessage[]) {
   const title =
     existing.title ||
     (firstText && "text" in firstText ? titleFrom(firstText.text) : "") ||
-    (firstUser?.parts.find((p) => p.type === "file") as { filename?: string } | undefined)?.filename ||
+    (firstUser?.parts.find((p) => p.type === "file") as { filename?: string } | undefined)
+      ?.filename ||
     "";
-  const changed = messages.length !== existing.messages.length || JSON.stringify(messages) !== JSON.stringify(existing.messages);
+  const changed =
+    messages.length !== existing.messages.length ||
+    JSON.stringify(messages) !== JSON.stringify(existing.messages);
   if (!changed && title === existing.title) return;
   await updateThread(id, { messages, title, updatedAt: changed ? Date.now() : existing.updatedAt });
 }
@@ -148,8 +161,10 @@ export async function createProject(name: string) {
 export async function deleteProject(id: string) {
   set({ projects: state.projects.filter((p) => p.id !== id) });
   await idb.remove("projects", id);
-  for (const t of state.threads.filter((t) => t.projectId === id)) await updateThread(t.id, { projectId: undefined });
-  for (const f of state.files.filter((f) => f.projectId === id)) await updateFile(f.id, { projectId: undefined, category: "docs" });
+  for (const t of state.threads.filter((t) => t.projectId === id))
+    await updateThread(t.id, { projectId: undefined });
+  for (const f of state.files.filter((f) => f.projectId === id))
+    await updateFile(f.id, { projectId: undefined, category: "docs" });
 }
 
 /* ---------------- Memory ---------------- */
