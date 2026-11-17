@@ -8,6 +8,7 @@ import { ExperiencePicker } from "@/components/shell/ExperiencePicker";
 import { executionMode } from "@/lib/experiences";
 import { LocalRuntimeTransport } from "@/lib/runtime/local";
 import {
+  getData,
   loadData,
   saveMessages,
   updateThread,
@@ -16,6 +17,7 @@ import {
 import {
   getSettings,
   markSettingsHydrated,
+  useSettings,
   type Settings,
 } from "@/lib/store/settings";
 import type { Thread } from "@/lib/store/types";
