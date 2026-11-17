@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "src/lib/runtime/**"
+      - "src/routes/**"
+      - "src/lib/experiences.ts"
+      - "src/lib/store/**"
       - ".github/workflows/on-device-runtime.yml"
       - "bun.lock"
       - "package.json"
