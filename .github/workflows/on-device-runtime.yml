@@ -1,0 +1,42 @@
+name: On-Device Runtime Verification
+
+on:
+  pull_request:
+    paths:
+      - "src/lib/runtime/**"
+      - ".github/workflows/on-device-runtime.yml"
+      - "bun.lock"
+      - "package.json"
+  push:
+    branches: [main]
+    paths:
+      - "src/lib/runtime/**"
+      - ".github/workflows/on-device-runtime.yml"
+      - "bun.lock"
+      - "package.json"
+
+concurrency:
+  group: on-device-runtime-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run tests
+        run: bun run test
+
+      - name: TypeScript validation
+        run: bunx tsc --noEmit
+
+      - name: Production build
+        run: bun run build
