@@ -72,7 +72,12 @@ function Home() {
     setStarting(true);
     try {
       const settings = getSettings();
-      const experience = settings.defaultPrivate ? "private" : settings.experience;
+      const requestsWebSearch = value.toLowerCase().startsWith("search the web:");
+      const experience = settings.defaultPrivate
+        ? "private"
+        : requestsWebSearch
+          ? "research"
+          : settings.experience;
       const thread = await createThread({ experience, title: value.slice(0, 48) });
       await saveMessages(thread.id, [
         {
