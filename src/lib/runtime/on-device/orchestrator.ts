@@ -68,9 +68,9 @@ export async function executeOnDeviceChat(
   fallback: () => string,
   signal?: AbortSignal,
 ): Promise<string> {
-  assertLocalExecution({ boundary: "local", capability: "local-chat", signal });
+  assertLocalExecution({ boundary: "local", capability: "local-chat", ...(signal ? { signal } : {}) });
   await bootOnDeviceRuntime();
-  assertLocalExecution({ boundary: "local", capability: "local-inference", signal });
+  assertLocalExecution({ boundary: "local", capability: "local-inference", ...(signal ? { signal } : {}) });
   return (await generateLocally(messages, signal)) ?? fallback();
 }
 
