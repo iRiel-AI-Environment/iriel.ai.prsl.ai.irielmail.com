@@ -1,10 +1,6 @@
 import type { UIMessage } from "ai";
 
-export type OnDeviceCapability =
-  | "local-chat"
-  | "local-memory"
-  | "local-inference"
-  | "offline-assets";
+export type OnDeviceCapability = "local-chat" | "local-memory" | "local-inference" | "offline-assets";
 
 export type ExecutionBoundary = "local" | "federated";
 
