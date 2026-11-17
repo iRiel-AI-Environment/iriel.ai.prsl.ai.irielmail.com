@@ -66,12 +66,7 @@
     "metadata": {
       "type": "object",
       "additionalProperties": {
-        "type": [
-          "string",
-          "number",
-          "integer",
-          "boolean"
-        ]
+        "type": ["string", "number", "integer", "boolean"]
       }
     }
   },
@@ -79,10 +74,7 @@
     "definitionReference": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "id",
-        "version"
-      ],
+      "required": ["id", "version"],
       "properties": {
         "id": {
           "type": "string",
@@ -105,14 +97,10 @@
       },
       "anyOf": [
         {
-          "required": [
-            "path"
-          ]
+          "required": ["path"]
         },
         {
-          "required": [
-            "digest"
-          ]
+          "required": ["digest"]
         }
       ]
     },

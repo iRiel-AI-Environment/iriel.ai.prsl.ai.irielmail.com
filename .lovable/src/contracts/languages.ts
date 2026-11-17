@@ -1,5 +1,4 @@
 export const SUPPORTED_LANGUAGES = [
-
   "en-US",
   "en-GB",
 
@@ -32,6 +31,5 @@ export const SUPPORTED_LANGUAGES = [
 
   "zh-CN",
 
-  "ko-KR"
-
+  "ko-KR",
 ] as const;

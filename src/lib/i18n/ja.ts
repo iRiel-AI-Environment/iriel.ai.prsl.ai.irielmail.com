@@ -69,7 +69,8 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "このデバイス内だけで動作。データは外に出ません。",
   "exp.switchedNew": "この体験で新しいチャットを開始しました",
   "private.badge": "プライベート · このデバイス内",
-  "private.banner": "プライベートセッション。すべてこのデバイス内で実行され、テレメトリの収集も外部連携への呼び出しもありません。",
+  "private.banner":
+    "プライベートセッション。すべてこのデバイス内で実行され、テレメトリの収集も外部連携への呼び出しもありません。",
   "private.zeroTelemetry": "テレメトリなし",
   "private.zeroFederation": "外部呼び出しなし",
   "local.badge": "ローカルランタイム",
@@ -83,9 +84,12 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "chat.memorySaved": "メモリに保存しました",
   "chat.savingMemory": "メモリに保存中",
   "chat.error.generic": "iRielが回答を完了できませんでした。もう一度お試しください。",
-  "chat.error.rate": "iRielに多くのリクエストが寄せられています。少し待ってから、もう一度お試しください。",
-  "chat.error.credits": "このワークスペースのAI利用枠を使い切りました。続けるにはクレジットを追加してください。",
-  "chat.error.network": "オフラインになっているか、接続が切れました。ネットワークを確認して、もう一度お試しください。",
+  "chat.error.rate":
+    "iRielに多くのリクエストが寄せられています。少し待ってから、もう一度お試しください。",
+  "chat.error.credits":
+    "このワークスペースのAI利用枠を使い切りました。続けるにはクレジットを追加してください。",
+  "chat.error.network":
+    "オフラインになっているか、接続が切れました。ネットワークを確認して、もう一度お試しください。",
   "chat.stopped": "停止しました",
   "chat.attachment": "添付ファイル",
   "search.placeholder": "チャット、ファイル、メモリを検索...",
@@ -104,7 +108,8 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "vault.media": "メディア",
   "vault.projects": "プロジェクト",
   "vault.empty": "iVaultは空です。",
-  "vault.emptyHint": "書類、写真、プロジェクトファイルをアップロードできます。iRielがインデックスを作成し、内容について質問できるようにします。",
+  "vault.emptyHint":
+    "書類、写真、プロジェクトファイルをアップロードできます。iRielがインデックスを作成し、内容について質問できるようにします。",
   "vault.emptyCategory": "このカテゴリにはまだファイルがありません。",
   "vault.full": "このファイルを保存するためのiVaultの空き容量が足りません。",
   "vault.upgrade": "プランを変更",
@@ -207,13 +212,15 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "memory.fromChat": "会話から",
   "memory.manual": "自分で追加",
   "conn.federation": "PRSL-AIエコシステム",
-  "conn.federationDesc": "フェデレーションコネクタを通じて、高度な推論、知識、言語サービスを利用できます。",
+  "conn.federationDesc":
+    "フェデレーションコネクタを通じて、高度な推論、知識、言語サービスを利用できます。",
   "conn.web": "ウェブアクセス",
   "conn.webDesc": "「日常」と「リサーチ」でウェブ検索や情報源の引用を利用できます。",
   "conn.mode": "実行モード",
   "conn.hybrid": "ハイブリッド",
   "conn.local": "ローカルのみ",
-  "conn.hybridDesc": "「プライベート」はデバイス内で完結し、ほかの体験は必要に応じてエコシステムを利用します。",
+  "conn.hybridDesc":
+    "「プライベート」はデバイス内で完結し、ほかの体験は必要に応じてエコシステムを利用します。",
   "conn.localDesc": "すべての体験がデバイス内のランタイムで実行されます。",
   "custom.motion": "プレゼンスの動き",
   "custom.motionDesc": "オーブの呼吸するような光と、なめらかな動き。",
@@ -249,11 +256,14 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "common.loading": "読み込み中...",
   "common.today": "今日",
   "common.cancel": "キャンセル",
-  "voice.unsupported": "このブラウザでは音声入力を利用できません。Chrome、Edge、Safariをお試しください。",
-  "voice.denied": "マイクへのアクセスがブロックされています。iRielに話しかけるには、ブラウザの設定で許可してください。",
+  "voice.unsupported":
+    "このブラウザでは音声入力を利用できません。Chrome、Edge、Safariをお試しください。",
+  "voice.denied":
+    "マイクへのアクセスがブロックされています。iRielに話しかけるには、ブラウザの設定で許可してください。",
   "voice.noSpeech": "聞き取れませんでした。もう一度お試しください。",
   "engines.title": "検索エンジン",
-  "engines.subtitle": "!ghや!wのように、!とショートカットを入力すると、さまざまなサービスを検索できます。",
+  "engines.subtitle":
+    "!ghや!wのように、!とショートカットを入力すると、さまざまなサービスを検索できます。",
   "engines.default": "デフォルトの検索エンジン",
   "engines.irielWeb": "iRiel Web",
   "engines.irielWebDesc": "iRiel内で検索し、情報源を引用します。",
@@ -277,7 +287,8 @@ export const ja: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "情報源",
   "knowledge.enabled": "回答に使用",
   "knowledge.priority": "ナレッジの優先順位",
-  "knowledge.priorityDesc": "あなたのナレッジを最優先に、次にiVault、メモリ、コンテキスト、一般知識を参照します。",
+  "knowledge.priorityDesc":
+    "あなたのナレッジを最優先に、次にiVault、メモリ、コンテキスト、一般知識を参照します。",
   "knowledge.add": "情報源を追加",
   "knowledge.addTopic": "トピック",
   "knowledge.addUrl": "リンク",

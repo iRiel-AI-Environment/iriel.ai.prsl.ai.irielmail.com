@@ -5,5 +5,5 @@ export const VAULT_STORAGE = {
 
   plus: 1024,
 
-  advanced: 2048
+  advanced: 2048,
 } as const;

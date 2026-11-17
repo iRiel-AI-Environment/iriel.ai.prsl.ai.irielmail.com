@@ -69,7 +69,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "Funciona apenas neste dispositivo. Nada sai dele.",
   "exp.switchedNew": "Foi iniciada uma nova conversa para esta experiência",
   "private.badge": "Privada · Neste dispositivo",
-  "private.banner": "Sessão privada. Funciona inteiramente neste dispositivo — sem telemetria nem chamadas à federação.",
+  "private.banner":
+    "Sessão privada. Funciona inteiramente neste dispositivo — sem telemetria nem chamadas à federação.",
   "private.zeroTelemetry": "Sem telemetria",
   "private.zeroFederation": "Sem chamadas externas",
   "local.badge": "Ambiente de execução local",
@@ -84,8 +85,10 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "chat.savingMemory": "A guardar na memória",
   "chat.error.generic": "O iRiel não conseguiu concluir a resposta. Tenta novamente.",
   "chat.error.rate": "O iRiel está a receber muitos pedidos. Aguarda um momento e tenta novamente.",
-  "chat.error.credits": "A utilização de IA disponível para este espaço de trabalho esgotou-se. Adiciona créditos para continuar.",
-  "chat.error.network": "Estás sem ligação ou a ligação foi interrompida. Verifica a tua rede e tenta novamente.",
+  "chat.error.credits":
+    "A utilização de IA disponível para este espaço de trabalho esgotou-se. Adiciona créditos para continuar.",
+  "chat.error.network":
+    "Estás sem ligação ou a ligação foi interrompida. Verifica a tua rede e tenta novamente.",
   "chat.stopped": "Interrompido",
   "chat.attachment": "Anexo",
   "search.placeholder": "Pesquisar conversas, ficheiros e memória...",
@@ -104,7 +107,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "vault.media": "Multimédia",
   "vault.projects": "Projetos",
   "vault.empty": "O teu iVault está vazio.",
-  "vault.emptyHint": "Carrega documentos, fotografias ou ficheiros de projetos. O iRiel indexa-os para poderes fazer perguntas sobre eles.",
+  "vault.emptyHint":
+    "Carrega documentos, fotografias ou ficheiros de projetos. O iRiel indexa-os para poderes fazer perguntas sobre eles.",
   "vault.emptyCategory": "Ainda não há ficheiros nesta categoria.",
   "vault.full": "Não há espaço suficiente no iVault para este ficheiro.",
   "vault.upgrade": "Alterar plano",
@@ -123,7 +127,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "vault.status.embedding": "A gerar representações vetoriais",
   "vault.status.indexed": "Indexado",
   "vault.runtime.title": "Recursos do ambiente de execução",
-  "vault.runtime.subtitle": "Geridos pelo ambiente de execução do iRiel. Nunca ocupam espaço no teu iVault.",
+  "vault.runtime.subtitle":
+    "Geridos pelo ambiente de execução do iRiel. Nunca ocupam espaço no teu iVault.",
   "vault.runtime.zero": "0 B da tua quota",
   "vault.runtime.weights": "Pesos dos modelos",
   "vault.runtime.cache": "Cache de inferência",
@@ -139,7 +144,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "projects.name": "Nome do projeto",
   "projects.create": "Criar",
   "projects.empty": "Ainda não há projetos.",
-  "projects.emptyHint": "Cria um projeto para manter juntas as conversas e os ficheiros relacionados.",
+  "projects.emptyHint":
+    "Cria um projeto para manter juntas as conversas e os ficheiros relacionados.",
   "projects.chats": "Conversas",
   "projects.noChats": "Ainda não há conversas neste projeto.",
   "projects.newChat": "Nova conversa no projeto",
@@ -154,7 +160,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "agents.start": "Iniciar",
   "agents.enabled": "Ativado",
   "agents.planner": "Planeador",
-  "agents.planner.desc": "Transforma objetivos em planos claros e organizados, com os próximos passos.",
+  "agents.planner.desc":
+    "Transforma objetivos em planos claros e organizados, com os próximos passos.",
   "agents.researcher": "Investigador",
   "agents.researcher.desc": "Encontra informação atualizada e cita as respetivas fontes.",
   "agents.writer": "Escritor",
@@ -198,22 +205,27 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "profile.invalidEmail": "Introduz um endereço de e-mail válido.",
   "profile.nameRequired": "Introduz o teu nome.",
   "memory.use": "Usar memória nas conversas",
-  "memory.useDesc": "O iRiel lembra-se do que escolhes e usa essa informação para personalizar as respostas.",
+  "memory.useDesc":
+    "O iRiel lembra-se do que escolhes e usa essa informação para personalizar as respostas.",
   "memory.add": "Adicionar",
   "memory.addPlaceholder": "Algo de que o iRiel se deva lembrar...",
-  "memory.empty": "Ainda não há memórias. Pede ao iRiel para se lembrar de algo ou adiciona-o aqui.",
+  "memory.empty":
+    "Ainda não há memórias. Pede ao iRiel para se lembrar de algo ou adiciona-o aqui.",
   "memory.delete": "Esquecer",
   "memory.forgotten": "Esquecido",
   "memory.fromChat": "De uma conversa",
   "memory.manual": "Adicionado por ti",
   "conn.federation": "Ecossistema PRSL-AI",
-  "conn.federationDesc": "Serviços de raciocínio aprofundado, conhecimento e linguagem através do conector de federação.",
+  "conn.federationDesc":
+    "Serviços de raciocínio aprofundado, conhecimento e linguagem através do conector de federação.",
   "conn.web": "Acesso à web",
-  "conn.webDesc": "Permite às experiências Dia a dia e Investigação pesquisar na web e citar fontes.",
+  "conn.webDesc":
+    "Permite às experiências Dia a dia e Investigação pesquisar na web e citar fontes.",
   "conn.mode": "Modo de execução",
   "conn.hybrid": "Híbrido",
   "conn.local": "Apenas local",
-  "conn.hybridDesc": "A experiência Privada permanece no dispositivo; as restantes usam o ecossistema quando necessário.",
+  "conn.hybridDesc":
+    "A experiência Privada permanece no dispositivo; as restantes usam o ecossistema quando necessário.",
   "conn.localDesc": "Todas as experiências funcionam no ambiente de execução do dispositivo.",
   "custom.motion": "Movimento da presença",
   "custom.motionDesc": "Luz pulsante e transições fluidas da esfera.",
@@ -244,13 +256,16 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "about.runtime": "Componentes do ambiente de execução",
   "about.active": "Ativo",
   "about.standby": "Em espera",
-  "about.principles": "Inteligência nativa. As pessoas em primeiro lugar. Privacidade por predefinição.",
+  "about.principles":
+    "Inteligência nativa. As pessoas em primeiro lugar. Privacidade por predefinição.",
   "common.close": "Fechar",
   "common.loading": "A carregar...",
   "common.today": "Hoje",
   "common.cancel": "Cancelar",
-  "voice.unsupported": "A entrada por voz não está disponível neste navegador. Experimenta o Chrome, o Edge ou o Safari.",
-  "voice.denied": "O acesso ao microfone foi bloqueado. Permite-o nas definições do navegador para falar com o iRiel.",
+  "voice.unsupported":
+    "A entrada por voz não está disponível neste navegador. Experimenta o Chrome, o Edge ou o Safari.",
+  "voice.denied":
+    "O acesso ao microfone foi bloqueado. Permite-o nas definições do navegador para falar com o iRiel.",
   "voice.noSpeech": "Não percebi. Tenta novamente.",
   "engines.title": "Motores de pesquisa",
   "engines.subtitle": "Escreve ! e um atalho, como !gh ou !w, para pesquisar em qualquer lugar.",
@@ -277,7 +292,8 @@ export const pt: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "fontes",
   "knowledge.enabled": "Usar nas respostas",
   "knowledge.priority": "Prioridade do conhecimento",
-  "knowledge.priorityDesc": "Primeiro o teu conhecimento, depois o iVault, a memória, o contexto e o conhecimento geral.",
+  "knowledge.priorityDesc":
+    "Primeiro o teu conhecimento, depois o iVault, a memória, o contexto e o conhecimento geral.",
   "knowledge.add": "Adicionar fonte",
   "knowledge.addTopic": "Tema",
   "knowledge.addUrl": "Ligação",

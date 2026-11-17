@@ -69,7 +69,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "Läuft nur auf diesem Gerät. Nichts verlässt es.",
   "exp.switchedNew": "Neuer Chat für diesen Modus gestartet",
   "private.badge": "Privat · Auf diesem Gerät",
-  "private.banner": "Private Sitzung. Läuft vollständig auf diesem Gerät — keine Telemetrie, keine Föderationsaufrufe.",
+  "private.banner":
+    "Private Sitzung. Läuft vollständig auf diesem Gerät — keine Telemetrie, keine Föderationsaufrufe.",
   "private.zeroTelemetry": "Keine Telemetrie",
   "private.zeroFederation": "Keine externen Aufrufe",
   "local.badge": "Lokale Laufzeitumgebung",
@@ -83,9 +84,12 @@ export const de: Partial<Record<MessageKey, string>> = {
   "chat.memorySaved": "Im Gedächtnis gespeichert",
   "chat.savingMemory": "Wird im Gedächtnis gespeichert",
   "chat.error.generic": "iRiel konnte diese Antwort nicht fertigstellen. Versuche es erneut.",
-  "chat.error.rate": "iRiel erhält gerade viele Anfragen. Warte einen Moment und versuche es erneut.",
-  "chat.error.credits": "Das KI-Kontingent für diesen Arbeitsbereich ist aufgebraucht. Lade Guthaben auf, um fortzufahren.",
-  "chat.error.network": "Du bist offline oder die Verbindung wurde unterbrochen. Prüfe dein Netzwerk und versuche es erneut.",
+  "chat.error.rate":
+    "iRiel erhält gerade viele Anfragen. Warte einen Moment und versuche es erneut.",
+  "chat.error.credits":
+    "Das KI-Kontingent für diesen Arbeitsbereich ist aufgebraucht. Lade Guthaben auf, um fortzufahren.",
+  "chat.error.network":
+    "Du bist offline oder die Verbindung wurde unterbrochen. Prüfe dein Netzwerk und versuche es erneut.",
   "chat.stopped": "Gestoppt",
   "chat.attachment": "Anhang",
   "search.placeholder": "Chats, Dateien und Gedächtnis durchsuchen...",
@@ -104,7 +108,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "vault.media": "Medien",
   "vault.projects": "Projekte",
   "vault.empty": "Dein iVault ist leer.",
-  "vault.emptyHint": "Lade Dokumente, Fotos oder Projektdateien hoch. iRiel indexiert sie, damit du Fragen dazu stellen kannst.",
+  "vault.emptyHint":
+    "Lade Dokumente, Fotos oder Projektdateien hoch. iRiel indexiert sie, damit du Fragen dazu stellen kannst.",
   "vault.emptyCategory": "Noch keine Dateien in dieser Kategorie.",
   "vault.full": "Nicht genug iVault-Speicher für diese Datei.",
   "vault.upgrade": "Tarif ändern",
@@ -123,7 +128,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "vault.status.embedding": "Wird vektorisiert",
   "vault.status.indexed": "Indexiert",
   "vault.runtime.title": "Ressourcen der Laufzeitumgebung",
-  "vault.runtime.subtitle": "Von der iRiel-Laufzeitumgebung verwaltet. Werden nie auf deinen iVault-Speicher angerechnet.",
+  "vault.runtime.subtitle":
+    "Von der iRiel-Laufzeitumgebung verwaltet. Werden nie auf deinen iVault-Speicher angerechnet.",
   "vault.runtime.zero": "0 B deines Kontingents",
   "vault.runtime.weights": "Modellgewichte",
   "vault.runtime.cache": "Inferenz-Cache",
@@ -139,7 +145,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "projects.name": "Projektname",
   "projects.create": "Erstellen",
   "projects.empty": "Noch keine Projekte.",
-  "projects.emptyHint": "Erstelle ein Projekt, um zusammengehörige Chats und Dateien an einem Ort zu sammeln.",
+  "projects.emptyHint":
+    "Erstelle ein Projekt, um zusammengehörige Chats und Dateien an einem Ort zu sammeln.",
   "projects.chats": "Unterhaltungen",
   "projects.noChats": "Noch keine Unterhaltungen in diesem Projekt.",
   "projects.newChat": "Neuer Chat im Projekt",
@@ -164,7 +171,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "agents.daily": "Alltagsassistent",
   "agents.daily.desc": "Schnelle Antworten, Erinnerungen und alltägliche Aufgaben.",
   "agents.keeper": "iVault-Verwalter",
-  "agents.keeper.desc": "Durchsucht deinen iVault und fasst Inhalte zusammen — vollständig auf dem Gerät.",
+  "agents.keeper.desc":
+    "Durchsucht deinen iVault und fasst Inhalte zusammen — vollständig auf dem Gerät.",
   "devices.title": "Geräte",
   "devices.this": "Dieses Gerät",
   "devices.browser": "Browser",
@@ -201,15 +209,18 @@ export const de: Partial<Record<MessageKey, string>> = {
   "memory.useDesc": "iRiel merkt sich, was du auswählst, und passt Antworten damit an dich an.",
   "memory.add": "Hinzufügen",
   "memory.addPlaceholder": "Etwas, das sich iRiel merken soll...",
-  "memory.empty": "Noch keine Erinnerungen. Bitte iRiel, sich etwas zu merken, oder füge es hier hinzu.",
+  "memory.empty":
+    "Noch keine Erinnerungen. Bitte iRiel, sich etwas zu merken, oder füge es hier hinzu.",
   "memory.delete": "Vergessen",
   "memory.forgotten": "Vergessen",
   "memory.fromChat": "Aus einer Unterhaltung",
   "memory.manual": "Von dir hinzugefügt",
   "conn.federation": "PRSL-AI-Ökosystem",
-  "conn.federationDesc": "Vertieftes Nachdenken, Wissens- und Sprachdienste über den Föderationskonnektor.",
+  "conn.federationDesc":
+    "Vertieftes Nachdenken, Wissens- und Sprachdienste über den Föderationskonnektor.",
   "conn.web": "Webzugriff",
-  "conn.webDesc": "Ermöglicht den Modi Alltag und Recherche, das Web zu durchsuchen und Quellen zu zitieren.",
+  "conn.webDesc":
+    "Ermöglicht den Modi Alltag und Recherche, das Web zu durchsuchen und Quellen zu zitieren.",
   "conn.mode": "Ausführungsmodus",
   "conn.hybrid": "Hybrid",
   "conn.local": "Nur lokal",
@@ -249,8 +260,10 @@ export const de: Partial<Record<MessageKey, string>> = {
   "common.loading": "Wird geladen...",
   "common.today": "Heute",
   "common.cancel": "Abbrechen",
-  "voice.unsupported": "Spracheingabe ist in diesem Browser nicht verfügbar. Versuche es mit Chrome, Edge oder Safari.",
-  "voice.denied": "Der Mikrofonzugriff wurde blockiert. Erlaube ihn in deinen Browsereinstellungen, um mit iRiel zu sprechen.",
+  "voice.unsupported":
+    "Spracheingabe ist in diesem Browser nicht verfügbar. Versuche es mit Chrome, Edge oder Safari.",
+  "voice.denied":
+    "Der Mikrofonzugriff wurde blockiert. Erlaube ihn in deinen Browsereinstellungen, um mit iRiel zu sprechen.",
   "voice.noSpeech": "Das habe ich nicht verstanden. Versuche es erneut.",
   "engines.title": "Suchmaschinen",
   "engines.subtitle": "Gib ! und ein Kürzel wie !gh oder !w ein, um überall zu suchen.",
@@ -277,7 +290,8 @@ export const de: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "Quellen",
   "knowledge.enabled": "In Antworten verwenden",
   "knowledge.priority": "Wissenspriorität",
-  "knowledge.priorityDesc": "Dein Wissen zuerst, dann iVault, Gedächtnis, Kontext und Allgemeinwissen.",
+  "knowledge.priorityDesc":
+    "Dein Wissen zuerst, dann iVault, Gedächtnis, Kontext und Allgemeinwissen.",
   "knowledge.add": "Quelle hinzufügen",
   "knowledge.addTopic": "Thema",
   "knowledge.addUrl": "Link",

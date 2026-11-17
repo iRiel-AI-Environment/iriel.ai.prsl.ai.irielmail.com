@@ -14,7 +14,9 @@ export function findEngineByTitle(title: string) {
 }
 
 /** A complete "!shortcut" anywhere in the prompt routes the rest of it to that engine. */
-export function parseBang(text: string): { engine: SearchEngine; query: string; shortcut: string } | null {
+export function parseBang(
+  text: string,
+): { engine: SearchEngine; query: string; shortcut: string } | null {
   const re = /(^|\s)!([a-z0-9]+)(?=\s|$)/i;
   const m = text.match(re);
   if (!m) return null;
@@ -49,7 +51,8 @@ export function suggestEngines(partial: string, limit = 8) {
 }
 
 export function engineUrl(engine: SearchEngine, query: string, preferDesktop = true) {
-  const template = (preferDesktop ? engine.desktop : undefined) ?? engine.mobile ?? engine.desktop ?? "";
+  const template =
+    (preferDesktop ? engine.desktop : undefined) ?? engine.mobile ?? engine.desktop ?? "";
   return template.replace("%s", encodeURIComponent(query));
 }
 
@@ -61,7 +64,9 @@ export function isAppScheme(engine: SearchEngine) {
 export function engineHost(engine: SearchEngine) {
   const url = engine.desktop ?? engine.mobile;
   try {
-    return /^https?:/.test(url) ? new URL(url.replace("%s", "x")).hostname.replace(/^www\./, "") : undefined;
+    return /^https?:/.test(url)
+      ? new URL(url.replace("%s", "x")).hostname.replace(/^www\./, "")
+      : undefined;
   } catch {
     return undefined;
   }
@@ -71,7 +76,9 @@ export function engineHost(engine: SearchEngine) {
 export function engineFavicon(engine: SearchEngine) {
   if (engine.favicon?.startsWith("http")) return engine.favicon;
   const domain = engine.favicon ?? engineHost(engine);
-  return domain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64` : undefined;
+  return domain
+    ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`
+    : undefined;
 }
 
 export function openEngine(engine: SearchEngine, query: string) {

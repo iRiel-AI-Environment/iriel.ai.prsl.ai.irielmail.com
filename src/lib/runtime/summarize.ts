@@ -34,5 +34,7 @@ export function summarize(text: string, max = 4) {
 }
 
 export function keywords(text: string) {
-  return (text.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []).filter((w) => w.length > 2 && !STOP.has(w));
+  return (text.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []).filter(
+    (w) => w.length > 2 && !STOP.has(w),
+  );
 }

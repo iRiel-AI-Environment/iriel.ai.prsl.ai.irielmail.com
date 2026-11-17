@@ -14,7 +14,11 @@ export const PLANS: { id: PlanId; name: string; bytes: number; label: string }[]
  * are never added to iVault usage.
  */
 export const RUNTIME_ASSETS = [
-  { key: "vault.runtime.weights", detail: "General · Reasoning · Coding · Embedding", bytes: 14.2 * GB },
+  {
+    key: "vault.runtime.weights",
+    detail: "General · Reasoning · Coding · Embedding",
+    bytes: 14.2 * GB,
+  },
   { key: "vault.runtime.speech", detail: "Recognition · Voice", bytes: 0.4 * GB },
   { key: "vault.runtime.cache", detail: "KV · Prompt", bytes: 1.1 * GB },
 ] as const;

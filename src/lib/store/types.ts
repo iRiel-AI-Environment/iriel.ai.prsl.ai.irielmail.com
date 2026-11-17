@@ -1,6 +1,7 @@
 import type { UIMessage } from "ai";
 
-export type ExperienceId = "everyday" | "thinking" | "research" | "creative" | "developer" | "private";
+export type ExperienceId =
+  "everyday" | "thinking" | "research" | "creative" | "developer" | "private";
 
 export type AgentId = "planner" | "researcher" | "writer" | "coder" | "daily" | "keeper";
 

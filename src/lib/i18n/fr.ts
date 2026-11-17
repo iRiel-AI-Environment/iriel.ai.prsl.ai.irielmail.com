@@ -69,7 +69,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "exp.private.desc": "Fonctionne uniquement sur cet appareil. Rien n’en sort.",
   "exp.switchedNew": "Nouvelle conversation créée pour cette expérience",
   "private.badge": "Privé · Sur cet appareil",
-  "private.banner": "Session privée. Fonctionne entièrement sur cet appareil — aucune télémétrie, aucun appel à la fédération.",
+  "private.banner":
+    "Session privée. Fonctionne entièrement sur cet appareil — aucune télémétrie, aucun appel à la fédération.",
   "private.zeroTelemetry": "Aucune télémétrie",
   "private.zeroFederation": "Aucun appel externe",
   "local.badge": "Environnement d’exécution local",
@@ -84,8 +85,10 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "chat.savingMemory": "Enregistrement en mémoire",
   "chat.error.generic": "iRiel n’a pas pu terminer cette réponse. Réessayez.",
   "chat.error.rate": "iRiel reçoit beaucoup de demandes. Patientez un instant, puis réessayez.",
-  "chat.error.credits": "Le quota d’utilisation de l’IA pour cet espace de travail est épuisé. Ajoutez des crédits pour continuer.",
-  "chat.error.network": "Vous êtes hors ligne ou la connexion a été interrompue. Vérifiez votre réseau, puis réessayez.",
+  "chat.error.credits":
+    "Le quota d’utilisation de l’IA pour cet espace de travail est épuisé. Ajoutez des crédits pour continuer.",
+  "chat.error.network":
+    "Vous êtes hors ligne ou la connexion a été interrompue. Vérifiez votre réseau, puis réessayez.",
   "chat.stopped": "Arrêté",
   "chat.attachment": "Pièce jointe",
   "search.placeholder": "Rechercher dans les conversations, les fichiers et la mémoire...",
@@ -104,7 +107,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "vault.media": "Médias",
   "vault.projects": "Projets",
   "vault.empty": "Votre iVault est vide.",
-  "vault.emptyHint": "Importez des documents, des photos ou des fichiers de projet. iRiel les indexe pour que vous puissiez poser des questions à leur sujet.",
+  "vault.emptyHint":
+    "Importez des documents, des photos ou des fichiers de projet. iRiel les indexe pour que vous puissiez poser des questions à leur sujet.",
   "vault.emptyCategory": "Aucun fichier dans cette catégorie pour le moment.",
   "vault.full": "L’espace disponible dans iVault est insuffisant pour ce fichier.",
   "vault.upgrade": "Changer de forfait",
@@ -123,7 +127,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "vault.status.embedding": "Vectorisation",
   "vault.status.indexed": "Indexé",
   "vault.runtime.title": "Ressources de l’environnement d’exécution",
-  "vault.runtime.subtitle": "Gérées par l’environnement d’exécution iRiel. Jamais décomptées de votre iVault.",
+  "vault.runtime.subtitle":
+    "Gérées par l’environnement d’exécution iRiel. Jamais décomptées de votre iVault.",
   "vault.runtime.zero": "0 octet de votre quota",
   "vault.runtime.weights": "Poids des modèles",
   "vault.runtime.cache": "Cache d’inférence",
@@ -154,7 +159,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "agents.start": "Démarrer",
   "agents.enabled": "Activé",
   "agents.planner": "Planificateur",
-  "agents.planner.desc": "Transforme vos objectifs en plans clairs et structurés, avec les prochaines étapes.",
+  "agents.planner.desc":
+    "Transforme vos objectifs en plans clairs et structurés, avec les prochaines étapes.",
   "agents.researcher": "Chercheur",
   "agents.researcher.desc": "Trouve des informations récentes et cite leurs sources.",
   "agents.writer": "Rédacteur",
@@ -164,7 +170,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "agents.daily": "Assistant du quotidien",
   "agents.daily.desc": "Réponses rapides, rappels et tâches du quotidien.",
   "agents.keeper": "Gardien d’iVault",
-  "agents.keeper.desc": "Recherche et résume le contenu de votre iVault — entièrement sur l’appareil.",
+  "agents.keeper.desc":
+    "Recherche et résume le contenu de votre iVault — entièrement sur l’appareil.",
   "devices.title": "Appareils",
   "devices.this": "Cet appareil",
   "devices.browser": "Navigateur",
@@ -198,22 +205,27 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "profile.invalidEmail": "Saisissez une adresse e-mail valide.",
   "profile.nameRequired": "Saisissez votre nom.",
   "memory.use": "Utiliser la mémoire dans les conversations",
-  "memory.useDesc": "iRiel retient ce que vous choisissez et s’en sert pour personnaliser ses réponses.",
+  "memory.useDesc":
+    "iRiel retient ce que vous choisissez et s’en sert pour personnaliser ses réponses.",
   "memory.add": "Ajouter",
   "memory.addPlaceholder": "Quelque chose qu’iRiel devrait retenir...",
-  "memory.empty": "Aucun souvenir pour le moment. Demandez à iRiel de retenir quelque chose, ou ajoutez-le ici.",
+  "memory.empty":
+    "Aucun souvenir pour le moment. Demandez à iRiel de retenir quelque chose, ou ajoutez-le ici.",
   "memory.delete": "Oublier",
   "memory.forgotten": "Oublié",
   "memory.fromChat": "Issu d’une conversation",
   "memory.manual": "Ajouté par vous",
   "conn.federation": "Écosystème PRSL-AI",
-  "conn.federationDesc": "Services de raisonnement approfondi, de connaissances et de langage via le connecteur de fédération.",
+  "conn.federationDesc":
+    "Services de raisonnement approfondi, de connaissances et de langage via le connecteur de fédération.",
   "conn.web": "Accès au Web",
-  "conn.webDesc": "Permet aux expériences Quotidien et Recherche de rechercher sur le Web et de citer des sources.",
+  "conn.webDesc":
+    "Permet aux expériences Quotidien et Recherche de rechercher sur le Web et de citer des sources.",
   "conn.mode": "Mode d’exécution",
   "conn.hybrid": "Hybride",
   "conn.local": "Local uniquement",
-  "conn.hybridDesc": "L’expérience Privé reste sur l’appareil ; les autres utilisent l’écosystème si nécessaire.",
+  "conn.hybridDesc":
+    "L’expérience Privé reste sur l’appareil ; les autres utilisent l’écosystème si nécessaire.",
   "conn.localDesc": "Chaque expérience utilise l’environnement d’exécution de l’appareil.",
   "custom.motion": "Animation de présence",
   "custom.motionDesc": "Lumière au rythme d’une respiration et transitions fluides de l’orbe.",
@@ -226,12 +238,14 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "custom.balanced": "Équilibré",
   "custom.detailed": "Détaillé",
   "privacy.defaultPrivate": "Démarrer les nouvelles conversations en mode Privé",
-  "privacy.defaultPrivateDesc": "Les nouvelles conversations s’exécutent uniquement sur cet appareil.",
+  "privacy.defaultPrivateDesc":
+    "Les nouvelles conversations s’exécutent uniquement sur cet appareil.",
   "privacy.telemetry": "Télémétrie",
   "privacy.telemetryDesc": "iRiel ne collecte jamais de données de télémétrie d’utilisation.",
   "privacy.off": "Désactivée",
   "privacy.export": "Exporter mes données",
-  "privacy.exportDesc": "Téléchargez vos conversations, votre mémoire et vos réglages au format JSON.",
+  "privacy.exportDesc":
+    "Téléchargez vos conversations, votre mémoire et vos réglages au format JSON.",
   "privacy.clearChats": "Supprimer toutes les conversations",
   "privacy.clearMemory": "Effacer toute la mémoire",
   "privacy.clearVault": "Supprimer tous les fichiers iVault",
@@ -249,8 +263,10 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "common.loading": "Chargement...",
   "common.today": "Aujourd’hui",
   "common.cancel": "Annuler",
-  "voice.unsupported": "La saisie vocale n’est pas disponible dans ce navigateur. Essayez Chrome, Edge ou Safari.",
-  "voice.denied": "L’accès au microphone a été bloqué. Autorisez-le dans les réglages de votre navigateur pour parler à iRiel.",
+  "voice.unsupported":
+    "La saisie vocale n’est pas disponible dans ce navigateur. Essayez Chrome, Edge ou Safari.",
+  "voice.denied":
+    "L’accès au microphone a été bloqué. Autorisez-le dans les réglages de votre navigateur pour parler à iRiel.",
   "voice.noSpeech": "Je n’ai pas bien entendu. Réessayez.",
   "engines.title": "Moteurs de recherche",
   "engines.subtitle": "Saisissez ! suivi d’un raccourci, comme !gh ou !w, pour rechercher partout.",
@@ -277,7 +293,8 @@ export const fr: Partial<Record<MessageKey, string>> = {
   "knowledge.sources": "sources",
   "knowledge.enabled": "Utiliser dans les réponses",
   "knowledge.priority": "Priorité des connaissances",
-  "knowledge.priorityDesc": "Vos connaissances d’abord, puis iVault, la mémoire, le contexte et les connaissances générales.",
+  "knowledge.priorityDesc":
+    "Vos connaissances d’abord, puis iVault, la mémoire, le contexte et les connaissances générales.",
   "knowledge.add": "Ajouter une source",
   "knowledge.addTopic": "Sujet",
   "knowledge.addUrl": "Lien",

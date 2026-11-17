@@ -12,7 +12,8 @@ const INITIAL = state;
 
 export function setPresence(patch: Partial<PresenceStore>) {
   const next = { ...state, ...patch };
-  if (next.listening === state.listening && next.level === state.level && next.busy === state.busy) return;
+  if (next.listening === state.listening && next.level === state.level && next.busy === state.busy)
+    return;
   state = next;
   listeners.forEach((l) => l());
 }

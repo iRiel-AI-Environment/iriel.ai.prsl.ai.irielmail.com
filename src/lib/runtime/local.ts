@@ -16,21 +16,27 @@ export function localRespond(messages: UIMessage[]): string {
     .map((p) => p.text)
     .join("\n")
     .trim();
-  const files = last.parts.filter((p) => p.type === "file") as { filename?: string; mediaType: string; url: string }[];
+  const files = last.parts.filter((p) => p.type === "file") as {
+    filename?: string;
+    mediaType: string;
+    url: string;
+  }[];
   const lower = text.toLowerCase();
   const settings = getSettings();
 
   // Memory
   const remember = text.match(/^(?:please\s+)?remember(?:\s+that)?\s+(.+)/i);
   if (remember) {
-    if (!settings.memoryEnabled) return "Memory is turned off in iSpace → Memory, so I won't keep this.";
+    if (!settings.memoryEnabled)
+      return "Memory is turned off in iSpace → Memory, so I won't keep this.";
     const fact = (remember[1] ?? "").replace(/[.!]+$/, "");
     void addMemory(fact, "chat");
     return `Saved to memory, on this device only:\n\n> ${fact}`;
   }
   if (/what do you (know|remember) about me|my memories/.test(lower)) {
     const mems = getData().memories;
-    if (!mems.length) return "I don't have any memories yet. Say “remember that …” and I'll keep it on this device.";
+    if (!mems.length)
+      return "I don't have any memories yet. Say “remember that …” and I'll keep it on this device.";
     return `Here's what I remember:\n\n${mems.map((m) => `- ${m.text}`).join("\n")}`;
   }
 
@@ -59,16 +65,31 @@ export function localRespond(messages: UIMessage[]): string {
   // Summarize pasted text
   if (/summari[sz]e|tl;?dr|resume|resumir|résumer|zusammenfass/.test(lower)) {
     const body = text.replace(/^.*?(summari[sz]e[^:]*:|tl;?dr:?)/i, "").trim();
-    if (body.length < 120) return "Paste the text after your request, or attach a file, and I'll summarize it on this device.";
+    if (body.length < 120)
+      return "Paste the text after your request, or attach a file, and I'll summarize it on this device.";
     const points = summarize(body, 4);
     return `Here's the gist:\n\n${points.map((p) => `- ${p}`).join("\n")}`;
   }
 
   // iVault search
   if (/\b(file|files|vault|ivault|document|documents|find|search my)\b/.test(lower)) {
-    const terms = keywords(text).filter((w) => !["file", "files", "vault", "ivault", "find", "search", "document", "documents", "work"].includes(w));
+    const terms = keywords(text).filter(
+      (w) =>
+        ![
+          "file",
+          "files",
+          "vault",
+          "ivault",
+          "find",
+          "search",
+          "document",
+          "documents",
+          "work",
+        ].includes(w),
+    );
     const all = getData().files;
-    if (!all.length) return "Your iVault is empty. Add files in **Files** and I can search and summarize them here, privately.";
+    if (!all.length)
+      return "Your iVault is empty. Add files in **Files** and I can search and summarize them here, privately.";
     const scored = all
       .map((f) => {
         const hay = `${f.name} ${f.text ?? ""}`.toLowerCase();
@@ -90,7 +111,11 @@ export function localRespond(messages: UIMessage[]): string {
   // Time
   if (/\b(what time|current time|today'?s date|what day)\b/.test(lower)) {
     const tz = settings.profile.timezone;
-    const now = new Date().toLocaleString(settings.profile.language, { timeZone: tz, dateStyle: "full", timeStyle: "short" });
+    const now = new Date().toLocaleString(settings.profile.language, {
+      timeZone: tz,
+      dateStyle: "full",
+      timeStyle: "short",
+    });
     return `It's ${now} (${tz}).`;
   }
 
@@ -153,7 +178,9 @@ export class LocalRuntimeTransport implements ChatTransport<UIMessage> {
   async sendMessages({
     messages,
     abortSignal,
-  }: Parameters<ChatTransport<UIMessage>["sendMessages"]>[0]): Promise<ReadableStream<UIMessageChunk>> {
+  }: Parameters<ChatTransport<UIMessage>["sendMessages"]>[0]): Promise<
+    ReadableStream<UIMessageChunk>
+  > {
     const reply = localRespond(messages);
     const id = crypto.randomUUID();
     return new ReadableStream<UIMessageChunk>({

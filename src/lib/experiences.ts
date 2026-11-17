@@ -42,7 +42,12 @@ export interface Agent {
 export const AGENTS: Agent[] = [
   { id: "daily", name: "agents.daily", desc: "agents.daily.desc", experience: "everyday" },
   { id: "planner", name: "agents.planner", desc: "agents.planner.desc", experience: "thinking" },
-  { id: "researcher", name: "agents.researcher", desc: "agents.researcher.desc", experience: "research" },
+  {
+    id: "researcher",
+    name: "agents.researcher",
+    desc: "agents.researcher.desc",
+    experience: "research",
+  },
   { id: "writer", name: "agents.writer", desc: "agents.writer.desc", experience: "creative" },
   { id: "coder", name: "agents.coder", desc: "agents.coder.desc", experience: "developer" },
   { id: "keeper", name: "agents.keeper", desc: "agents.keeper.desc", experience: "private" },

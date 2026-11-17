@@ -1,11 +1,5 @@
 export type ModelCategory =
-  | "general"
-  | "reasoning"
-  | "coding"
-  | "embedding"
-  | "translation"
-  | "speech"
-  | "classification";
+  "general" | "reasoning" | "coding" | "embedding" | "translation" | "speech" | "classification";
 export interface ModelContract {
   id: string;
 

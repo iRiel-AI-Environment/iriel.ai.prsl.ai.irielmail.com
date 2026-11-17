@@ -10,7 +10,7 @@ export const MODELS: ModelContract[] = [
 
     local: true,
 
-    enabled: true
+    enabled: true,
   },
 
   {
@@ -22,7 +22,7 @@ export const MODELS: ModelContract[] = [
 
     local: true,
 
-    enabled: true
+    enabled: true,
   },
 
   {
@@ -34,7 +34,7 @@ export const MODELS: ModelContract[] = [
 
     local: true,
 
-    enabled: true
+    enabled: true,
   },
 
   {
@@ -46,7 +46,7 @@ export const MODELS: ModelContract[] = [
 
     local: true,
 
-    enabled: true
+    enabled: true,
   },
 
   {
@@ -58,6 +58,6 @@ export const MODELS: ModelContract[] = [
 
     local: true,
 
-    enabled: true
-  }
+    enabled: true,
+  },
 ];

@@ -1,9 +1,9 @@
 export type IrielOrbStatus =
-  | 'idle'       // Estático, brilho interno suave
-  | 'listening'  // Filamento interno desliza suavemente (sem deformar a borda)
-  | 'thinking'   // Gradiente lento na borda de vidro
-  | 'streaming'  // Imóvel no cabeçalho durante a resposta
-  | 'error';     // Brilho âmbar discreto e fixo
+  | "idle" // Estático, brilho interno suave
+  | "listening" // Filamento interno desliza suavemente (sem deformar a borda)
+  | "thinking" // Gradiente lento na borda de vidro
+  | "streaming" // Imóvel no cabeçalho durante a resposta
+  | "error"; // Brilho âmbar discreto e fixo
 
 export interface IrielOrbMotionConfig {
   /** Mantém largura, altura e posição 100% fixas em todos os estados */

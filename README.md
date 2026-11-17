@@ -1,4 +1,3 @@
-
 # iRiel AI - Personal Intelligence Environment
 
 **Created by Robert Software Labs**  
@@ -23,7 +22,8 @@ Respect these architectural definitions:
 
 Use the PRSL-AI contracts and capabilities. iRiel Router intelligence, Policy Engine, Runtime, Provider Agnostic,iRiel Resolution and all already-defined architectural responsibilities.
 
-Requires 
+Requires
+
 - Human First.
 - Privacy by Default.
 - Provider Agnostic.
@@ -31,7 +31,7 @@ Requires
 - User id Sovereign.
 - Accessibility and Inclusion.
 - iRiel Contextual Engine
-- iRiel Continuity 
+- iRiel Continuity
 - Interoperability.
 
 ## 2. VISUAL DESIGN — LOCKED
@@ -65,11 +65,13 @@ Implement the central iRiel Presence as a horizontal iridescent glass capsule wi
 Support four real interaction states:
 
 **Idle**
+
 - Soft breathing illumination.
 - Subtle glass reflections.
 - Continuous ambient presence.
 
 **Listening**
+
 - Horizontal acoustic waveforms.
 - "Listening..." indicator.
 - Active microphone control.
@@ -77,11 +79,13 @@ Support four real interaction states:
 - Actual microphone permission and capture handling.
 
 **Thinking**
+
 - Dynamic chromatic pulse.
 - Processing animation.
 - Accurate execution feedback.
 
 **Responding**
+
 - Smooth transition into compact header presence.
 - Persistent visual feedback.
 
@@ -143,6 +147,7 @@ Header:
 **iSpace — Your personal intelligence environment.**
 
 Include:
+
 - Back navigation.
 - User avatar.
 - Internal Presence capsule.
@@ -163,7 +168,7 @@ Each section must have a functional interface.
 
 ### Profile
 
-Contains: 
+Contains:
 
 - Name.
 - <namespace>@iriel.
@@ -171,8 +176,8 @@ Contains:
 - Languages.
 - Personal preferences.
 
-Load authenticated user: 
-Passkey: FaceID/TouchID+ Auth 2FA + Codes Recovery 
+Load authenticated user:
+Passkey: FaceID/TouchID+ Auth 2FA + Codes Recovery
 
 information when available. Do not invent account information or hardcode example credentials as real user data.
 
@@ -247,21 +252,27 @@ Experiences define interaction behavior, contextual handling, presentation, and 
 They are not separate agents, applications, or architectural foundations.
 
 ### Everyday
+
 General personal assistance and daily interactions.
 
 ### Thinking
+
 Deeper reasoning, structured analysis, and problem-solving.
 
 ### Research
+
 Research, source discovery, evidence organization, and synthesis.
 
 ### Creative
+
 Writing, ideation, and creative workflows.
 
 ### Developer
+
 Programming, architecture, debugging, and technical workflows.
 
 ### Private
+
 Strictly isolated local execution.
 
 Private requirements:
@@ -374,21 +385,27 @@ Use a centralized localization architecture instead of scattered hardcoded strin
 Implement these complete workflows:
 
 ### Personal conversation
+
 Input → Intent interpretation → Capability resolution → Policy evaluation → Authorized execution → Response → Context continuity.
 
 ### Web research
+
 Research request → Capability selection → External authorization → Source retrieval → Evidence presentation → References.
 
 ### iVault upload
+
 File selection → Validation → Storage resolution → Upload → Progress → Confirmation → File listing.
 
 ### Experience switching
+
 Experience selection → Contract loading → Policy evaluation → Environment update → Confirmation.
 
 ### Private execution
+
 Private activation → Local capability verification → Isolation enforcement → External execution blocking → Authorized local execution → Verified status.
 
 ### iSpace management
+
 Section selection → Data loading → User modification → Validation → Authorization → Persistence → Updated interface.
 
 Every flow must have appropriate loading, success, failure, cancellation, and empty states.
@@ -397,12 +414,12 @@ Every flow must have appropriate loading, success, failure, cancellation, and em
 
 Validate the complete application at these exact viewport sizes:
 
-| Device | Resolution |
-|---|---|
-| Mobile | 393 × 764 |
-| Tablet Portrait | 744 × 1133 |
+| Device           | Resolution |
+| ---------------- | ---------- |
+| Mobile           | 393 × 764  |
+| Tablet Portrait  | 744 × 1133 |
 | Tablet Landscape | 1133 × 744 |
-| Desktop | 1280 × 832 |
+| Desktop          | 1280 × 832 |
 
 Implement adaptive navigation, responsive cards, touch-friendly controls, adaptive composers, and continuous Presence.
 
@@ -474,21 +491,27 @@ Do not report successful validation for tests that were not actually executed.
 At completion, provide:
 
 ### Implemented
+
 Completed features and validated workflows.
 
 ### Integrations
+
 Connected services and verified capabilities.
 
 ### Remaining Dependencies
+
 External integrations that still require configuration or authorization.
 
 ### Validation
+
 Build status, tests, screenshots, viewport checks, and remaining failures.
 
 ### Changed from the mockups
+
 Every deliberate visual or structural change and its justification.
 
 ### Added beyond the mockups
+
 Every additional workflow, state, interaction, and operational behavior.
 
 ---
@@ -508,4 +531,3 @@ Preserve the supplied design language.
 Implement the actual product behavior behind every designed interaction.
 
 Use PRSL-AI Ecosystem v6.3 as the authoritative architectural reference.
-

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { type SearchEngine } from '../schemas/search-engine';
-import { useEngineAutocomplete } from '../hooks/use-engine-autocomplete';
-import { resolveSearchUrl } from '../services/search-resolver';
+import React, { useState } from "react";
+import { type SearchEngine } from "../schemas/search-engine";
+import { useEngineAutocomplete } from "../hooks/use-engine-autocomplete";
+import { resolveSearchUrl } from "../services/search-resolver";
 
 interface SearchBarProps {
   engines: readonly SearchEngine[];
@@ -14,7 +14,7 @@ export function SearchBar({
   defaultEngine,
   onNavigate,
 }: SearchBarProps): React.JSX.Element {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const suggestions = useEngineAutocomplete(query, engines);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -46,10 +46,7 @@ export function SearchBar({
         <ul role="listbox" aria-label="Search engine shortcuts">
           {suggestions.map(({ engine, matchedShortcut }) => (
             <li key={engine.title}>
-              <button
-                type="button"
-                onClick={() => handleSelectSuggestion(matchedShortcut)}
-              >
+              <button type="button" onClick={() => handleSelectSuggestion(matchedShortcut)}>
                 <strong>!{matchedShortcut}</strong> — {engine.title}
               </button>
             </li>
