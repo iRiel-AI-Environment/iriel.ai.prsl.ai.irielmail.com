@@ -32,8 +32,20 @@ export interface LocalModelProgress {
   message: string;
 }
 
-export function isWebGPUAvailable(): boolean {
-  return typeof navigator !== "undefined" && "gpu" in navigator;
+let activeEngine: WebLLMEngine | null = null;
+let loading: Promise<void> | null = null;
+
+export async function checkWebGPUAvailability(): Promise<boolean> {
+  if (typeof navigator === "undefined") return false;
+  const gpu = (navigator as Navigator & {
+    gpu?: { requestAdapter(): Promise<unknown> };
+  }).gpu;
+  if (!gpu) return false;
+  try {
+    return Boolean(await gpu.requestAdapter());
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -44,66 +56,84 @@ export function isWebGPUAvailable(): boolean {
  */
 export async function enableWebLLMBackend(
   onProgress: (progress: LocalModelProgress) => void,
-): Promise<() => void> {
-  if (!isWebGPUAvailable()) {
-    throw new Error("WebGPU is unavailable in this browser or device.");
+): Promise<void> {
+  if (activeEngine) {
+    onProgress({ percent: 100, message: "Local model is already ready on this device." });
+    return;
   }
+  if (loading) return loading;
 
-  onProgress({ percent: 0, message: "Loading the local inference runtime…" });
-  const webllm = (await import(/* @vite-ignore */ WEBLLM_MODULE_URL)) as WebLLMModule;
-  const engine = await webllm.CreateMLCEngine(WEBLLM_MODEL_ID, {
-    initProgressCallback(progress) {
-      onProgress({
-        percent: Math.max(0, Math.min(100, Math.round((progress.progress ?? 0) * 100))),
-        message: progress.text ?? "Preparing the local model…",
-      });
-    },
-  });
+  loading = (async () => {
+    if (!(await checkWebGPUAvailability())) {
+      throw new Error("WebGPU is unavailable or no compatible GPU adapter was found.");
+    }
 
-  const backend: LocalInferenceBackend = {
-    id: "webllm-qwen2.5-0.5b",
-    label: "Qwen2.5 0.5B · WebLLM",
-    async isAvailable() {
-      return true;
-    },
-    async generate(messages: readonly UIMessage[], signal?: AbortSignal) {
-      if (signal?.aborted) {
-        throw new DOMException("The local operation was aborted.", "AbortError");
-      }
+    onProgress({ percent: 0, message: "Loading the local inference runtime…" });
+    const webllm = (await import(/* @vite-ignore */ WEBLLM_MODULE_URL)) as WebLLMModule;
+    const engine = await webllm.CreateMLCEngine(WEBLLM_MODEL_ID, {
+      initProgressCallback(progress) {
+        onProgress({
+          percent: Math.max(0, Math.min(100, Math.round((progress.progress ?? 0) * 100))),
+          message: progress.text ?? "Preparing the local model…",
+        });
+      },
+    });
 
-      const prompt: WebLLMMessage[] = messages.flatMap((message) => {
-        if (message.role !== "user" && message.role !== "assistant" && message.role !== "system") {
-          return [];
+    const backend: LocalInferenceBackend = {
+      id: "webllm-qwen2.5-0.5b",
+      label: "Qwen2.5 0.5B · WebLLM",
+      async isAvailable() {
+        return true;
+      },
+      async generate(messages: readonly UIMessage[], signal?: AbortSignal) {
+        if (signal?.aborted) {
+          throw new DOMException("The local operation was aborted.", "AbortError");
         }
-        const content = message.parts
-          .filter((part): part is Extract<(typeof message.parts)[number], { type: "text" }> => part.type === "text")
-          .map((part) => part.text)
-          .join("\n")
-          .trim();
-        return content ? [{ role: message.role, content }] : [];
-      });
 
-      const result = await engine.chat.completions.create({
-        messages: prompt,
-        temperature: 0.6,
-        max_tokens: 512,
-        stream: false,
-      });
-      if (signal?.aborted) {
-        throw new DOMException("The local operation was aborted.", "AbortError");
-      }
-      const content = result.choices?.[0]?.message?.content;
-      if (typeof content !== "string" || !content.trim()) {
-        throw new Error("WebLLM returned an empty response.");
-      }
-      return content;
-    },
-  };
+        const prompt: WebLLMMessage[] = messages.flatMap((message) => {
+          if (
+            message.role !== "user" &&
+            message.role !== "assistant" &&
+            message.role !== "system"
+          ) {
+            return [];
+          }
+          const content = message.parts
+            .filter(
+              (part): part is Extract<(typeof message.parts)[number], { type: "text" }> =>
+                part.type === "text",
+            )
+            .map((part) => part.text)
+            .join("\n")
+            .trim();
+          return content ? [{ role: message.role, content }] : [];
+        });
 
-  const unregister = registerLocalInferenceBackend(backend);
-  onProgress({ percent: 100, message: "Local model is ready on this device." });
-  return () => {
-    unregister();
-    void engine.unload();
-  };
+        const result = await engine.chat.completions.create({
+          messages: prompt,
+          temperature: 0.6,
+          max_tokens: 512,
+          stream: false,
+        });
+        if (signal?.aborted) {
+          throw new DOMException("The local operation was aborted.", "AbortError");
+        }
+        const content = result.choices?.[0]?.message?.content;
+        if (typeof content !== "string" || !content.trim()) {
+          throw new Error("WebLLM returned an empty response.");
+        }
+        return content;
+      },
+    };
+
+    activeEngine = engine;
+    registerLocalInferenceBackend(backend);
+    onProgress({ percent: 100, message: "Local model is ready on this device." });
+  })();
+
+  try {
+    await loading;
+  } finally {
+    loading = null;
+  }
 }
