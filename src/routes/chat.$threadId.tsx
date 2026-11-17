@@ -148,7 +148,10 @@ function ChatSession({ thread }: { thread: Thread }) {
   }, [messages, regenerate, status]);
 
   useEffect(() => {
-    if (status === "ready" && messages.length) {
+    if (
+      messages.length &&
+      (status === "ready" || status === "submitted" || status === "error")
+    ) {
       void saveMessages(thread.id, messages);
     }
   }, [messages, status, thread.id]);
@@ -173,7 +176,9 @@ function ChatSession({ thread }: { thread: Thread }) {
       await sendMessage({ text });
     } catch {
       setDraft(text);
-      toast.error("The message could not be sent. Your draft has been restored.");
+      toast.error(
+        "The message could not be sent. Your draft has been restored.",
+      );
     }
   };
 
@@ -259,6 +264,13 @@ function ChatSession({ thread }: { thread: Thread }) {
           >
             The response failed. Check your connection or retry your message.
           </p>
+          <button
+            type="button"
+            onClick={() => void regenerate()}
+            className="mt-2 text-xs underline"
+          >
+            Retry response
+          </button>
         )}
       </main>
 
