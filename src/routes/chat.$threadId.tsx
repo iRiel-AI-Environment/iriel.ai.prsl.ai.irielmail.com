@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DefaultChatTransport } from "ai";
 import { useChat } from "@ai-sdk/react";
 import { ArrowLeft, ArrowUp, ShieldCheck, Square } from "lucide-react";
@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { ExperiencePicker } from "@/components/shell/ExperiencePicker";
 import { LocalRuntimeTransport } from "@/lib/runtime/local";
 import { executionMode } from "@/lib/experiences";
-import { getData, loadData, saveMessages } from "@/lib/store/data";
+import { getData, loadData, saveMessages, updateThread } from "@/lib/store/data";
 import { getSettings, markSettingsHydrated, useSettings, type Settings } from "@/lib/store/settings";
 import type { Thread } from "@/lib/store/types";
 import { cn } from "@/lib/utils";
@@ -68,21 +68,28 @@ function ChatSession({ thread }: { thread: Thread }) {
     });
   }, [mode, experience, thread.agentId]);
 
-  const { messages, sendMessage, status, stop, error } = useChat({
+  const { messages, sendMessage, regenerate, status, stop, error } = useChat({
     id: thread.id,
     messages: thread.messages,
     transport,
   });
+
+  const initialResponseStarted = useRef(false);
+
+  useEffect(() => {
+    if (status === "ready" && messages.length === 1 && messages[0]?.role === "user" && !initialResponseStarted.current) {
+      initialResponseStarted.current = true;
+      void regenerate();
+    }
+  }, [messages, regenerate, status]);
 
   useEffect(() => {
     if (status === "ready" && messages.length) void saveMessages(thread.id, messages);
   }, [messages, status, thread.id]);
 
   useEffect(() => {
-    if (thread.experience !== experience) {
-      // Experience changes apply to subsequent turns in this conversation.
-    }
-  }, [experience, thread.experience]);
+    if (thread.experience !== experience) void updateThread(thread.id, { experience });
+  }, [experience, thread.experience, thread.id]);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
