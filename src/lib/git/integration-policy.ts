@@ -35,13 +35,7 @@ export const GIT_INTEGRATION_POLICY = {
 
   branches: {
     protected: ["main"],
-    acceptedPullRequestPrefixes: [
-      "integration/",
-      "feature/",
-      "fix/",
-      "hotfix/",
-      "release/",
-    ],
+    acceptedPullRequestPrefixes: ["integration/", "feature/", "fix/", "hotfix/", "release/"],
     prohibitDirectPushToProtected: true,
     prohibitForcePush: true,
     prohibitHistoryRewriteOnPublishedBranches: true,
@@ -114,22 +108,14 @@ export const GIT_INTEGRATION_POLICY = {
 const REQUIRED_BRANCH_PREFIXES: readonly string[] =
   GIT_INTEGRATION_POLICY.branches.acceptedPullRequestPrefixes;
 
-export function evaluatePullRequest(
-  input: PullRequestEvaluationInput,
-): PullRequestEvaluation {
+export function evaluatePullRequest(input: PullRequestEvaluationInput): PullRequestEvaluation {
   const reasons: string[] = [];
 
   if (input.baseBranch !== GIT_INTEGRATION_POLICY.defaultBranch) {
-    reasons.push(
-      `Target branch must be ${GIT_INTEGRATION_POLICY.defaultBranch}.`,
-    );
+    reasons.push(`Target branch must be ${GIT_INTEGRATION_POLICY.defaultBranch}.`);
   }
 
-  if (
-    !REQUIRED_BRANCH_PREFIXES.some((prefix) =>
-      input.headBranch.startsWith(prefix),
-    )
-  ) {
+  if (!REQUIRED_BRANCH_PREFIXES.some((prefix) => input.headBranch.startsWith(prefix))) {
     reasons.push("Source branch does not use an approved branch prefix.");
   }
 
@@ -137,11 +123,7 @@ export function evaluatePullRequest(
     reasons.push("A protected branch cannot be used as a pull request source.");
   }
 
-  if (
-    !GIT_INTEGRATION_POLICY.merge.allowedMethods.includes(
-      input.mergeMethod as "merge",
-    )
-  ) {
+  if (!GIT_INTEGRATION_POLICY.merge.allowedMethods.includes(input.mergeMethod as "merge")) {
     reasons.push("Merge method is not permitted by the active policy.");
   }
 
