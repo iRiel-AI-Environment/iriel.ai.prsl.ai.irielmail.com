@@ -1,6 +1,10 @@
 import type { UIMessage } from "ai";
 import type { OnDeviceRuntimeStatus, RuntimeCapabilityStatus } from "./contracts";
-import { generateLocally, getRegisteredInferenceBackend, isLocalInferenceAvailable } from "./inference";
+import {
+  generateLocally,
+  getRegisteredInferenceBackend,
+  isLocalInferenceAvailable,
+} from "./inference";
 import { assertLocalExecution } from "./privacy";
 
 let status: OnDeviceRuntimeStatus = {
@@ -31,7 +35,7 @@ export function bootOnDeviceRuntime(): Promise<OnDeviceRuntimeStatus> {
       const inferenceAvailable = await isLocalInferenceAvailable();
       status = {
         state: "ready",
-        inferenceBackend: inferenceAvailable ? backend?.id ?? null : null,
+        inferenceBackend: inferenceAvailable ? (backend?.id ?? null) : null,
         lastError: null,
         capabilities: [
           capability("local-chat", true, "Existing LocalRuntimeTransport is available."),
@@ -43,7 +47,11 @@ export function bootOnDeviceRuntime(): Promise<OnDeviceRuntimeStatus> {
               ? `Local backend "${backend?.label ?? backend?.id}" is ready.`
               : "No local model backend is registered; the existing deterministic local runtime remains active.",
           ),
-          capability("offline-assets", false, "Model and application assets are not pre-cached by this runtime."),
+          capability(
+            "offline-assets",
+            false,
+            "Model and application assets are not pre-cached by this runtime.",
+          ),
         ],
       };
       return status;
@@ -68,9 +76,17 @@ export async function executeOnDeviceChat(
   fallback: () => string,
   signal?: AbortSignal,
 ): Promise<string> {
-  assertLocalExecution({ boundary: "local", capability: "local-chat", ...(signal ? { signal } : {}) });
+  assertLocalExecution({
+    boundary: "local",
+    capability: "local-chat",
+    ...(signal ? { signal } : {}),
+  });
   await bootOnDeviceRuntime();
-  assertLocalExecution({ boundary: "local", capability: "local-inference", ...(signal ? { signal } : {}) });
+  assertLocalExecution({
+    boundary: "local",
+    capability: "local-inference",
+    ...(signal ? { signal } : {}),
+  });
   return (await generateLocally(messages, signal)) ?? fallback();
 }
 
