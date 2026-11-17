@@ -7,13 +7,7 @@ import { toast } from "sonner";
 import { ExperiencePicker } from "@/components/shell/ExperiencePicker";
 import { executionMode } from "@/lib/experiences";
 import { LocalRuntimeTransport } from "@/lib/runtime/local";
-import {
-  getData,
-  loadData,
-  saveMessages,
-  updateThread,
-  useData,
-} from "@/lib/store/data";
+import { getData, loadData, saveMessages, updateThread, useData } from "@/lib/store/data";
 import {
   getSettings,
   markSettingsHydrated,
@@ -30,9 +24,7 @@ export const Route = createFileRoute("/chat/$threadId")({
 function ChatRoute() {
   const { threadId } = Route.useParams();
   const ready = useData((state) => state.ready);
-  const thread = useData((state) =>
-    state.threads.find((item) => item.id === threadId),
-  );
+  const thread = useData((state) => state.threads.find((item) => item.id === threadId));
 
   useEffect(() => {
     markSettingsHydrated();
@@ -51,13 +43,8 @@ function ChatRoute() {
     return (
       <div className="grid min-h-dvh place-items-center px-6 text-center">
         <div>
-          <p className="text-sm">
-            This conversation is not available on this device.
-          </p>
-          <Link
-            to="/"
-            className="mt-4 inline-block text-sm underline"
-          >
+          <p className="text-sm">This conversation is not available on this device.</p>
+          <Link to="/" className="mt-4 inline-block text-sm underline">
             Start a new chat
           </Link>
         </div>
@@ -122,14 +109,7 @@ function ChatSession({ thread }: { thread: Thread }) {
     });
   }, [experience, mode, thread.agentId]);
 
-  const {
-    messages,
-    sendMessage,
-    regenerate,
-    status,
-    stop,
-    error,
-  } = useChat({
+  const { messages, sendMessage, regenerate, status, stop, error } = useChat({
     id: thread.id,
     messages: thread.messages,
     transport,
@@ -148,10 +128,7 @@ function ChatSession({ thread }: { thread: Thread }) {
   }, [messages, regenerate, status]);
 
   useEffect(() => {
-    if (
-      messages.length &&
-      (status === "ready" || status === "submitted" || status === "error")
-    ) {
+    if (messages.length && (status === "ready" || status === "submitted" || status === "error")) {
       void saveMessages(thread.id, messages);
     }
   }, [messages, status, thread.id]);
@@ -176,9 +153,7 @@ function ChatSession({ thread }: { thread: Thread }) {
       await sendMessage({ text });
     } catch {
       setDraft(text);
-      toast.error(
-        "The message could not be sent. Your draft has been restored.",
-      );
+      toast.error("The message could not be sent. Your draft has been restored.");
     }
   };
 
@@ -193,20 +168,14 @@ function ChatSession({ thread }: { thread: Thread }) {
           <ArrowLeft className="size-4" />
         </Link>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium">
-            {thread.title || "New conversation"}
-          </p>
+          <p className="truncate text-sm font-medium">{thread.title || "New conversation"}</p>
           <p className="text-[11px] text-muted-foreground">
             {mode === "local"
               ? "On-device runtime · No federation"
               : "iRiel ecosystem · Hybrid execution"}
           </p>
         </div>
-        <ExperiencePicker
-          value={experience}
-          onChange={setExperience}
-          compact
-        />
+        <ExperiencePicker value={experience} onChange={setExperience} compact />
       </header>
 
       {experience === "private" && (
@@ -219,9 +188,7 @@ function ChatSession({ thread }: { thread: Thread }) {
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-5 overflow-y-auto px-4 py-8">
         {messages.length === 0 && (
           <div className="my-auto py-16 text-center">
-            <p className="text-2xl font-light">
-              What would you like to work on?
-            </p>
+            <p className="text-2xl font-light">What would you like to work on?</p>
             <p className="mt-2 text-sm text-muted-foreground">
               {mode === "local"
                 ? "This conversation is processed locally on this device."
@@ -235,9 +202,7 @@ function ChatSession({ thread }: { thread: Thread }) {
             key={message.id}
             className={cn(
               "max-w-[92%] rounded-2xl px-4 py-3",
-              message.role === "user"
-                ? "ml-auto bg-secondary"
-                : "mr-auto glass",
+              message.role === "user" ? "ml-auto bg-secondary" : "mr-auto glass",
             )}
           >
             <p className="mb-1 text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -252,9 +217,7 @@ function ChatSession({ thread }: { thread: Thread }) {
         ))}
 
         {status === "submitted" && (
-          <p className="text-xs text-muted-foreground">
-            iRiel is preparing a response…
-          </p>
+          <p className="text-xs text-muted-foreground">iRiel is preparing a response…</p>
         )}
 
         {error && (
@@ -286,9 +249,7 @@ function ChatSession({ thread }: { thread: Thread }) {
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
               if (
-                event.key === "Enter" &&
-                !event.shiftKey &&
-                !event.nativeEvent.isComposing
+                event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing
               ) {
                 event.preventDefault();
                 event.currentTarget.form?.requestSubmit();
