@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Cpu, Download, ShieldCheck } from "lucide-react";
 import {
+  checkWebGPUAvailability,
   enableWebLLMBackend,
-  isWebGPUAvailable,
   type LocalModelProgress,
 } from "@/lib/runtime/on-device/webllm-backend";
 
-export function LocalModelSetup() {
+interface LocalModelSetupProps {
+  onReady: () => void;
+  onContinueBasic: () => void;
+}
+
+export function LocalModelSetup({ onReady, onContinueBasic }: LocalModelSetupProps) {
   const [loading, setLoading] = useState(false);
+  const [supported, setSupported] = useState<boolean | null>(null);
   const [progress, setProgress] = useState<LocalModelProgress | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [enabled, setEnabled] = useState(false);
-  const supported = isWebGPUAvailable();
+
+  useEffect(() => {
+    let active = true;
+    void checkWebGPUAvailability().then((available) => {
+      if (active) setSupported(available);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const enable = async () => {
     if (loading || enabled) return;
@@ -20,6 +35,7 @@ export function LocalModelSetup() {
     try {
       await enableWebLLMBackend(setProgress);
       setEnabled(true);
+      onReady();
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "The local model could not be loaded.");
     } finally {
@@ -37,7 +53,7 @@ export function LocalModelSetup() {
           <p className="text-sm font-medium">On-device AI model</p>
           <p className="mt-1 text-xs leading-5 text-muted-foreground">
             {enabled
-              ? "Qwen2.5 0.5B is loaded in this browser. Private chat uses local inference."
+              ? "Qwen2.5 0.5B is loaded in this browser. Local chat uses real on-device inference."
               : "Enable a small WebGPU model for real language-model inference on this device. The first setup downloads the runtime and model files; later sessions can reuse the browser cache."}
           </p>
         </div>
@@ -48,9 +64,9 @@ export function LocalModelSetup() {
         Chat prompts are processed in-browser and are not sent to the model host.
       </div>
 
-      {!supported && (
+      {supported === false && (
         <p role="status" className="mt-3 text-xs text-destructive">
-          WebGPU is not available in this browser. The existing local fallback remains active.
+          WebGPU is unavailable or no compatible GPU adapter was found. The basic local runtime remains available.
         </p>
       )}
 
@@ -75,17 +91,29 @@ export function LocalModelSetup() {
         </p>
       )}
 
-      <button
-        type="button"
-        onClick={() => void enable()}
-        disabled={!supported || loading || enabled}
-        className="mt-4 inline-flex h-9 items-center gap-2 rounded-full bg-foreground px-4 text-xs font-medium text-background disabled:opacity-40"
-      >
-        <Download className="size-3.5" />
-        {enabled ? "Local model enabled" : loading ? "Preparing model…" : "Download and enable model"}
-      </button>
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={() => void enable()}
+          disabled={supported !== true || loading || enabled}
+          className="inline-flex h-9 items-center gap-2 rounded-full bg-foreground px-4 text-xs font-medium text-background disabled:opacity-40"
+        >
+          <Download className="size-3.5" />
+          {enabled ? "Local model enabled" : loading ? "Preparing model…" : "Download and enable model"}
+        </button>
+        {!enabled && (
+          <button
+            type="button"
+            onClick={onContinueBasic}
+            disabled={loading}
+            className="h-9 rounded-full border border-hairline-strong px-4 text-xs text-muted-foreground hover:text-foreground disabled:opacity-40"
+          >
+            Continue with basic local mode
+          </button>
+        )}
+      </div>
       <p className="mt-2 text-[10px] leading-4 text-muted-foreground">
-        Consent: selecting this button downloads WebLLM code from esm.run and model assets from the model registry. No model or runtime is downloaded before you select it.
+        Consent: selecting the download button fetches WebLLM code from esm.run and model assets from the model registry. Nothing is downloaded before you select it.
       </p>
     </section>
   );
