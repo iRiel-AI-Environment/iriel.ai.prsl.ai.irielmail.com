@@ -30,9 +30,7 @@ describe("PRSL-AI Git integration policy v7.5.6.0", () => {
       headBranch: "random-work",
     });
     expect(result.allowed).toBe(false);
-    expect(result.reasons).toContain(
-      "Source branch does not use an approved branch prefix.",
-    );
+    expect(result.reasons).toContain("Source branch does not use an approved branch prefix.");
   });
 
   it("rejects a pull request whose source is not up to date", () => {
@@ -52,12 +50,8 @@ describe("PRSL-AI Git integration policy v7.5.6.0", () => {
       checks: { lint: true, test: false },
     });
     expect(result.allowed).toBe(false);
-    expect(result.reasons).toContain(
-      "Required check is missing or unsuccessful: test.",
-    );
-    expect(result.reasons).toContain(
-      "Required check is missing or unsuccessful: build.",
-    );
+    expect(result.reasons).toContain("Required check is missing or unsuccessful: test.");
+    expect(result.reasons).toContain("Required check is missing or unsuccessful: build.");
   });
 
   it("rejects squash and rebase merge methods", () => {
@@ -88,11 +82,7 @@ describe("PRSL-AI Git integration policy v7.5.6.0", () => {
       headBranch: "main",
     });
     expect(result.allowed).toBe(false);
-    expect(result.reasons).toContain(
-      "Source branch does not use an approved branch prefix.",
-    );
-    expect(result.reasons).toContain(
-      "A protected branch cannot be used as a pull request source.",
-    );
+    expect(result.reasons).toContain("Source branch does not use an approved branch prefix.");
+    expect(result.reasons).toContain("A protected branch cannot be used as a pull request source.");
   });
 });
