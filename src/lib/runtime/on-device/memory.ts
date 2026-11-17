@@ -7,11 +7,13 @@ export interface LocalMemoryMatch {
 }
 
 function terms(value: string): string[] {
-  return value
-    .toLocaleLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .match(/[\p{L}\p{N}]{2,}/gu) ?? [];
+  return (
+    value
+      .toLocaleLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .match(/[\p{L}\p{N}]{2,}/gu) ?? []
+  );
 }
 
 /** Searches the existing user-owned IndexedDB memory store; no remote embeddings. */
@@ -20,8 +22,8 @@ export function searchLocalMemories(query: string, limit = 5): LocalMemoryMatch[
   const queryTerms = [...new Set(terms(query))];
   if (!queryTerms.length) return [];
 
-  return getData().memories
-    .map((memory) => {
+  return getData()
+    .memories.map((memory) => {
       const memoryTerms = new Set(terms(memory.text));
       const matches = queryTerms.reduce((count, term) => count + Number(memoryTerms.has(term)), 0);
       return { memory, score: matches / queryTerms.length };
