@@ -8,15 +8,14 @@ import { ExperiencePicker } from "@/components/shell/ExperiencePicker";
 import { executionMode } from "@/lib/experiences";
 import { LocalRuntimeTransport } from "@/lib/runtime/local";
 import {
-  getData,
   loadData,
   saveMessages,
   updateThread,
+  useData,
 } from "@/lib/store/data";
 import {
   getSettings,
   markSettingsHydrated,
-  useSettings,
   type Settings,
 } from "@/lib/store/settings";
 import type { Thread } from "@/lib/store/types";
@@ -28,14 +27,14 @@ export const Route = createFileRoute("/chat/$threadId")({
 
 function ChatRoute() {
   const { threadId } = Route.useParams();
-  const [ready, setReady] = useState(false);
-  const thread = useSettings(() =>
-    getData().threads.find((item) => item.id === threadId),
+  const ready = useData((state) => state.ready);
+  const thread = useData((state) =>
+    state.threads.find((item) => item.id === threadId),
   );
 
   useEffect(() => {
     markSettingsHydrated();
-    void loadData().finally(() => setReady(true));
+    void loadData();
   }, []);
 
   if (!ready) {
