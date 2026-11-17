@@ -258,19 +258,21 @@ function ChatSession({ thread }: { thread: Thread }) {
         )}
 
         {error && (
-          <p
-            role="alert"
-            className="rounded-xl border border-destructive/30 p-3 text-sm text-destructive"
-          >
-            The response failed. Check your connection or retry your message.
-          </p>
-          <button
-            type="button"
-            onClick={() => void regenerate()}
-            className="mt-2 text-xs underline"
-          >
-            Retry response
-          </button>
+          <div>
+            <p
+              role="alert"
+              className="rounded-xl border border-destructive/30 p-3 text-sm text-destructive"
+            >
+              The response failed. Check your connection or retry your message.
+            </p>
+            <button
+              type="button"
+              onClick={() => void regenerate()}
+              className="mt-2 text-xs underline"
+            >
+              Retry response
+            </button>
+          </div>
         )}
       </main>
 
