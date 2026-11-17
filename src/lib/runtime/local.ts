@@ -3,6 +3,7 @@ import { addMemory, getData } from "@/lib/store/data";
 import { getSettings } from "@/lib/store/settings";
 import { dataUrlToText, formatBytes, isTextLike } from "@/lib/files";
 import { keywords, summarize } from "./summarize";
+import { executeOnDeviceChat } from "./on-device/orchestrator";
 
 /**
  * On-device runtime used by the Private experience (and whenever federation is off).
@@ -154,7 +155,7 @@ export class LocalRuntimeTransport implements ChatTransport<UIMessage> {
     messages,
     abortSignal,
   }: Parameters<ChatTransport<UIMessage>["sendMessages"]>[0]): Promise<ReadableStream<UIMessageChunk>> {
-    const reply = localRespond(messages);
+    const reply = await executeOnDeviceChat(messages, () => localRespond(messages), abortSignal);
     const id = crypto.randomUUID();
     return new ReadableStream<UIMessageChunk>({
       async start(controller) {
