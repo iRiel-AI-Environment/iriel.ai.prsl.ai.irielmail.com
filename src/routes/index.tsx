@@ -35,6 +35,13 @@ function Home() {
   useEffect(() => markSettingsHydrated(), []);
   const partial = bangInProgress(text);
   const suggestions = partial !== null ? suggestEngines(partial, 6) : [];
+  const promptFor = (key: (typeof PILLS)[number]) => {
+    if (key === "suggest.summarize") return t("suggest.summarize.prompt");
+    if (key === "suggest.plan") return t("suggest.plan.prompt");
+    if (key === "suggest.brainstorm") return t("suggest.brainstorm.prompt");
+    if (key === "suggest.web") return "Search the web: ";
+    return "Find something in my files: ";
+  };
 
   const submit = async () => {
     const value = text.trim();
@@ -106,7 +113,7 @@ function Home() {
         </form>
 
         <div className="mt-6 hidden flex-wrap justify-center gap-3 md:flex">
-          {PILLS.map((key) => <button key={key} type="button" onClick={() => setText(t(`${key}.prompt` as Parameters<typeof t>[0]) || t(key))} className="rounded-full glass px-4 py-2 text-xs text-muted-foreground hover:text-foreground">{t(key)}</button>)}
+          {PILLS.map((key) => <button key={key} type="button" onClick={() => setText(promptFor(key))} className="rounded-full glass px-4 py-2 text-xs text-muted-foreground hover:text-foreground">{t(key)}</button>)}
         </div>
       </main>
 
