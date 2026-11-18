@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ChatThreadIdRouteImport } from './routes/chat.$threadId'
 import { Route as IspaceIndexRouteImport } from './routes/ispace.index'
 import { Route as IspaceSectionRouteImport } from './routes/ispace.$section'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApiChatRoute = ApiChatRouteImport.update({
   id: '/api/chat',
   path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatThreadIdRoute = ChatThreadIdRouteImport.update({
+  id: '/chat/$threadId',
+  path: '/chat/$threadId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IspaceIndexRoute = IspaceIndexRouteImport.update({
@@ -38,12 +44,14 @@ const IspaceSectionRoute = IspaceSectionRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
+  '/chat/$threadId': typeof ChatThreadIdRoute
   '/ispace/$section': typeof IspaceSectionRoute
   '/ispace/': typeof IspaceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
+  '/chat/$threadId': typeof ChatThreadIdRoute
   '/ispace/$section': typeof IspaceSectionRoute
   '/ispace': typeof IspaceIndexRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
+  '/chat/$threadId': typeof ChatThreadIdRoute
   '/ispace/$section': typeof IspaceSectionRoute
   '/ispace/': typeof IspaceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/chat' | '/ispace/$section' | '/ispace/'
+  fullPaths: '/' | '/api/chat' | '/chat/$threadId' | '/ispace/$section' | '/ispace/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/chat' | '/ispace/$section' | '/ispace'
-  id: '__root__' | '/' | '/api/chat' | '/ispace/$section' | '/ispace/'
+  to: '/' | '/api/chat' | '/chat/$threadId' | '/ispace/$section' | '/ispace'
+  id: '__root__' | '/' | '/api/chat' | '/chat/$threadId' | '/ispace/$section' | '/ispace/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiChatRoute: typeof ApiChatRoute
+  ChatThreadIdRoute: typeof ChatThreadIdRoute
   IspaceSectionRoute: typeof IspaceSectionRoute
   IspaceIndexRoute: typeof IspaceIndexRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/api/chat'
       fullPath: '/api/chat'
       preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat/$threadId': {
+      id: '/chat/$threadId'
+      path: '/chat/$threadId'
+      fullPath: '/chat/$threadId'
+      preLoaderRoute: typeof ChatThreadIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ispace/': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiChatRoute: ApiChatRoute,
+  ChatThreadIdRoute: ChatThreadIdRoute,
   IspaceSectionRoute: IspaceSectionRoute,
   IspaceIndexRoute: IspaceIndexRoute,
 }
